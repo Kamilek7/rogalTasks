@@ -1,0 +1,95 @@
+@keyframes shake {
+  0%   {margin: 4vw auto}
+  20%  {margin: 6vw auto}
+  40% {margin: 5vw auto}
+  60%   {margin: 4vw auto}
+  80%  {margin: 6vw auto}
+  100% {margin: 5vw auto}
+}
+
+.modal
+{
+  z-index: 50;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color: #000000bb;
+  overflow: auto;
+  transition: all 0.4s ease-in-out;
+}
+.modal-hidden
+{
+  z-index: 50;
+  position:fixed;
+  top:100%;
+  left:0;
+  width:100%;
+  height:100%;
+  overflow: auto;
+  background-color: transparent;
+  transition: all 0.4s ease-in-out;
+}
+
+
+.close
+{
+  float:right;
+  margin: 1vw 2vw -3.6vw 0;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1e1e1e;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.close:hover
+{
+  cursor: pointer;
+  border-color: rgb(255, 191, 15);
+}
+label 
+{
+  width:fit-content;
+}
+
+.modal-content
+{
+  padding-bottom: 0.4vw;
+  margin: 5vw auto;
+  width:65%;
+  background-color: #50463c90;
+  border-radius: 2vw;
+  border: white dashed 2px;
+  transition: 0.5s all ease-in-out;
+}
+
+.modal-content-error
+{
+  padding-bottom: 0.4vw;
+  margin: 5vw auto;
+  width:65%;
+  background-color: #50463c90;
+  border-radius: 2vw;
+  border: rgb(224, 19, 19) dashed 2px;
+  animation-name:shake;
+  animation-duration: 0.1s;
+}
+
+.modal-content-error form >*
+{
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+}
+ 
+.modal-content form >*
+{
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+}
