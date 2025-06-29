@@ -6,12 +6,10 @@ const ZadaniaLista = ({zadania, callback}) => {
         
     {   
         let element = document.querySelector(`div[name='${id}']`);
-        element.classList.add("taskRowChild-removed");
-        element.classList.remove("taskRowChild");
-        setTimeout(() => {
-            element.style.display = "none";
-        }, 800)
+        element.style.transition = 'opacity 0.8s ease-in-out';
+        element.style.opacity= "0%";
         
+
     }
 
     const zadBezRodzica = zadania.filter((zad) => zad["parentID"] == 0);
@@ -26,7 +24,15 @@ const ZadaniaLista = ({zadania, callback}) => {
                 "Content-Type": "application/json"
             }
         }
-        const response = await fetch(url, options)
+        let element = document.querySelector(`div[name='${id}']`);
+        setTimeout(async () => {
+            const response = await fetch(url, options)
+            element.style.transition = 'opacity 0.005s ease-in-out';
+            element.style.opacity= "100%";
+            callback();
+        }, 1000)
+
+
     }
 
     
@@ -34,14 +40,20 @@ const ZadaniaLista = ({zadania, callback}) => {
     const wykonajZadanie = async (id) => {
 
         applyCSS(id);
-            const url = "https://tasks-backend.rogal-rogal.duckdns.org/wykonajZadanie/" + id;
-            const options = {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json"
-                }
+        const url = "https://tasks-backend.rogal-rogal.duckdns.org/wykonajZadanie/" + id;
+        const options = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
             }
-            const response = await fetch(url, options)            
+        }
+        let element = document.querySelector(`div[name='${id}']`);
+        setTimeout(async () => {
+            const response = await fetch(url, options)
+            element.style.transition = 'opacity 0.005s ease-in-out';
+            element.style.opacity= "100%";
+            callback();
+        }, 1000)
     }
 
     const wysunZadania = (id) =>

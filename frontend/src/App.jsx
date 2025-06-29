@@ -113,7 +113,7 @@ function App() {
       </div>
 
     </div>
-    
+    {specificDate!="any" &&<div><div style={{margin:"auto", textAlign:'center', marginTop: "5vh", fontSize: "3vh"}}>Zadania dla {specificDate}</div><button onClick={() => {update("any")}} style={{marginTop:"1vh"}}>Resetuj</button></div>}
     <ZadaniaLista zadania={zadania} callback={update} />
   </>
 }
