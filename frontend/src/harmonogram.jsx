@@ -3,7 +3,7 @@ import {useState} from "react"
 
 
 
-const Harmonogram = ({harmonogram, zamknijOkno, blad, callback}) => {
+const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
 
     const [nazwa, setName] = useState("")
     const [waga, setPriority] = useState("")
@@ -67,7 +67,7 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback}) => {
         var status = 0;
         if (currentHID=="new")
         {
-            const url = "https://tasks-backend.rogal-rogal.duckdns.org/harmonogramCreate/1"
+            const url = "https://tasks-backend.rogal-rogal.duckdns.org/harmonogramCreate/" +userID
             const options = {
                 method: "POST",
                 headers:  {

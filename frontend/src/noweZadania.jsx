@@ -1,6 +1,6 @@
 import {useState} from "react"
 
-const ZadForm = ({zadania, zamknijOkno, blad, callback}) => {
+const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
     const [nazwa, setName] = useState("")
     const [rodzic, setParent] = useState("0")
     const [data, setDate] = useState("")
@@ -9,9 +9,9 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback}) => {
     const onSubmit = async(e) => {
         e.preventDefault()
         const dane = {
-            nazwa, rodzic, data, waga
+            nazwa, rodzic, data, waga, userID
         }
-        const url = "https://tasks-backend.rogal-rogal.duckdns.org/noweZadanie"
+        const url = "https://tasks-backend.rogal-rogal.duckdns.org/noweZadanie/" + userID;
         const options = {
             method: "POST",
             headers:  {

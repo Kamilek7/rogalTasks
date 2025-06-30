@@ -1,14 +1,16 @@
 from flask import request, jsonify, json
 from flask import Flask
 from flask_mysqldb import MySQL
+from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from datetime import datetime
 import os
-from dotenv import load_dotenv
+
+from config import Config
 
 app = Flask(__name__)
 CORS(app)
-load_dotenv()
+bcrypt = Bcrypt(app)
 
 app.config['MYSQL_HOST'] = "localhost"
 app.config['MYSQL_USER'] = "python"
@@ -17,20 +19,19 @@ app.config['MYSQL_DB'] = os.getenv('DB')
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
 
-
-@app.route("/zadania/<string:DATE>", methods=["GET"])
-def get_tasks(DATE):
+@app.route("/zadania/<int:ID>/<string:DATE>", methods=["GET"])
+def get_tasks(ID,DATE):
     where = ""
     if (DATE!="any"):
         where = (f"HAVING date(parents.data)='{DATE}' ")
     cursor = mysql.connection.cursor()
-    cursor.execute(f"SELECT parents.*, JSON_ARRAYAGG(JSON_OBJECT('ID', children.ID)) AS children FROM (SELECT * FROM zadania WHERE status!=100) AS parents LEFT JOIN (SELECT * FROM zadania WHERE status!=100) AS children ON parents.ID=children.parentID GROUP BY ID {where}ORDER BY data ASC;")
+    cursor.execute(f"SELECT parents.*, JSON_ARRAYAGG(JSON_OBJECT('ID', children.ID)) AS children FROM (SELECT * FROM zadania WHERE status!=100) AS parents LEFT JOIN (SELECT * FROM zadania WHERE status!=100) AS children ON parents.ID=children.parentID WHERE parents.uzytkownik={ID} GROUP BY ID {where}ORDER BY data ASC;")
     temp = cursor.fetchall()
     cursor.close()
     return jsonify({"zadania" : temp})
 
-@app.route("/noweZadanie", methods=["POST"])
-def addTask():
+@app.route("/noweZadanie/<int:USER>", methods=["POST"])
+def addTask(USER):
     nazwa = request.json.get("nazwa")
     data = request.json.get("data")
     rodzic = request.json.get("rodzic")
@@ -38,7 +39,7 @@ def addTask():
 
     if nazwa and data and rodzic and waga:
         cursor = mysql.connection.cursor()
-        cursor.execute(f"INSERT INTO zadania (status, uzytkownik, nazwa, data, parentID, waga) VALUES (1, 1, '{nazwa}', '{data}', {rodzic}, {waga})")
+        cursor.execute(f"INSERT INTO zadania (status, uzytkownik, nazwa, data, parentID, waga) VALUES (1, {USER}, '{nazwa}', '{data}', {rodzic}, {waga})")
         mysql.connection.commit()
         cursor.close()
         return jsonify({"message":"Udalo sie dodac zadanie!"}), 201
@@ -97,6 +98,51 @@ def edytujHarmo(ID):
         mysql.connection.commit()
         cursor.close()
         return jsonify({"message":"Udalo sie wykonac zadanie!"}), 205
+
+@app.route("/register", methods=["POST"])
+def register():
+    login = request.json.get("login")
+    haslo = request.json.get("haslo")
+    haslo = bcrypt.generate_password_hash(haslo).decode('utf-8')
+    cursor = mysql.connection.cursor()
+    cursor.execute(f"SELECT login FROM uzytkownicy WHERE login='{login}';")
+    temp = cursor.fetchall()
+    if len(temp) >0:
+        return jsonify({"message" : "Dany użytkownik już istnieje!"}), 402
+    else:
+        cursor.execute(f'INSERT INTO uzytkownicy (login, haslo) VALUES ("{login}", "{haslo}");')
+        mysql.connection.commit()
+        return jsonify({"message" : "Dodano uzytkownika do bazy!"}), 206
+    
+@app.route("/validateData", methods=["POST"])
+def validate():
+    login = request.json.get("login")
+    haslo = request.json.get("haslo")
+    if haslo!="" and login!="":
+        return jsonify({"message" : "Poprawne dane!"}), 207
+    elif haslo!="":
+        return jsonify({"message" : "Wpisz login!"}), 406
+    elif login!="":
+        return jsonify({"message" : "Wpisz hasło!"}), 407
+    return jsonify({"message" : "Wpisz login i hasło!"}), 409
+
+    
+@app.route("/login", methods=["POST"])
+def login():
+    login = request.json.get("login")
+    haslo = request.json.get("haslo")
+    cursor = mysql.connection.cursor()
+    cursor.execute(f"SELECT id, login, haslo FROM uzytkownicy WHERE login='{login}';")
+    temp = cursor.fetchall()
+    if len(temp) ==0:
+        return jsonify({"message" : "Dany użytkownik nie istnieje!"}), 410
+    else:
+        password = temp[0]['haslo']
+        result = bcrypt.check_password_hash(password, "eft20031")
+        if not bcrypt.check_password_hash(password, haslo):
+            return jsonify({"message" : "Błędne hasło!"}), 411
+        else:
+            return jsonify({"dane" : temp[0]['id']}), 208
 
 if __name__ == "__main__":
     app.run(host='192.168.1.94', debug=True)
