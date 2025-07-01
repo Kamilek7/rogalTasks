@@ -73,6 +73,7 @@ function Page({user, setCookie}) {
   }
 
   const otworzOkno = (tryb) => {
+    update();
     if (!oknoTaskForm ) 
     {
         trybSet(tryb)

@@ -28,7 +28,7 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
         else
             blad(0);
     }
-    
+
     return <form onSubmit={onSubmit}>
             <h2>Dodaj nowe zadanie</h2>
             <span id="error-message-form"></span>

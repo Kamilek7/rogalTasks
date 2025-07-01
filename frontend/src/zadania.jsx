@@ -1,21 +1,26 @@
 import React from "react"
+import { useState} from 'react'
 
 const ZadaniaLista = ({zadania, callback}) => {
 
     const applyCSS = (id) =>
         
     {   
-        let element = document.querySelector(`div[name='${id}']`);
-        element.style.transition = 'opacity 0.8s ease-in-out';
-        element.style.opacity= "0%";
-        
-
+        let el = document.querySelector(`div[data-id='${id}']`);
+        el.style.transition = 'all 0.5s ease-in-out';
+        el.style.opacity= "0%";
+        setTimeout(async () => {
+            el.style.height='0px';
+            el.style.padding='0px';
+            el.style.margin='0px';
+        }, 600)
     }
 
     const zadBezRodzica = zadania.filter((zad) => zad["parentID"] == 0);
 
     const usunZadania = async (id) => {
 
+        setDeletingId(id);
         applyCSS(id);
         const url = "https://tasks-backend.rogal-rogal.duckdns.org/usunZadanie/" + id;
         const options = {
@@ -24,13 +29,10 @@ const ZadaniaLista = ({zadania, callback}) => {
                 "Content-Type": "application/json"
             }
         }
-        let element = document.querySelector(`div[name='${id}']`);
         setTimeout(async () => {
             const response = await fetch(url, options)
-            element.style.transition = 'opacity 0.005s ease-in-out';
-            element.style.opacity= "100%";
             callback();
-        }, 1000)
+        }, 1400)
 
 
     }
@@ -47,19 +49,17 @@ const ZadaniaLista = ({zadania, callback}) => {
                 "Content-Type": "application/json"
             }
         }
-        let element = document.querySelector(`div[name='${id}']`);
         setTimeout(async () => {
             const response = await fetch(url, options)
-            element.style.transition = 'opacity 0.005s ease-in-out';
-            element.style.opacity= "100%";
-            callback();
+            setTimeout(()=>{callback();},10);
+            
         }, 1000)
     }
 
     const wysunZadania = (id) =>
     {
-        var parent = document.getElementsByName("child" + id)[0];
         
+        let parent = document.querySelector(`div[data-id='child${id}']`);        
         var children = parent.children;
         if (children[0].className == "taskRowChild")
         {
@@ -105,7 +105,7 @@ const ZadaniaLista = ({zadania, callback}) => {
                 {
                         return ( 
                         <div class='mainTaskContainer'>
-                        <div class='taskRow' name={zadanie["ID"]}>
+                        <div key={zadanie["ID"]} class='taskRow' data-id={zadanie["ID"]}>
                             <div class='taskContentWrapper'>
                                 <div class='taskName'>{zadanie["nazwa"]}</div>
                                 <div class='taskContent'>{zadanie["data"]}</div>
@@ -114,11 +114,11 @@ const ZadaniaLista = ({zadania, callback}) => {
                             { (JSON.parse(zadanie["children"])[0].ID)== null &&<div class='taskFinished'  onClick={() => {wykonajZadanie(zadanie["ID"])}}> o </div>}
                             <div class='taskRemoved' onClick={() => {usunZadania(zadanie["ID"])}}> x </div>
                         </div>
-                        <div class="children" name={"child" + zadanie["ID"]}>
+                        <div key={"child" + zadanie["ID"]} class="children" data-id={"child" + zadanie["ID"]}>
                             {
                                     zadania.filter((zad) => zad["parentID"] == zadanie["ID"]).map((zadChild) => {
                                         return (
-                                        <div class='taskRowChild' name={zadChild["ID"]}>
+                                        <div key={zadChild["ID"]} class='taskRowChild' data-id={zadChild["ID"]}>
                                             <div class='taskContentWrapper'>
                                                 <div class='taskName'>{zadChild["nazwa"]}</div>
                                                 <div class='taskContent'>{zadChild["data"]}</div>

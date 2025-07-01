@@ -84,7 +84,7 @@ function Login({onLogin}) {
             <span style={{color:"red", height:"3vh", textAlign:"center"}} id='errorCode'></span>
             <input onChange={(e) => {setLogin(e.target.value); validate(e.target.value, "人");}} type='text'></input>
             <input onChange={(e) => {setPass(e.target.value); validate("人",e.target.value);}} type='password'></input>
-            <input id='submit' disabled type='submit' value='Zaloguj się'></input>
+            <input id='submit' disabled type='submit' value='Zarejestruj się'></input>
         </div>
     </form></div>
     }
