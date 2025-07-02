@@ -1,7 +1,10 @@
 flask
 flask-bcrypt
-flask-mysqldb 
 flask-cors
 flask-session
 python-dotenv
 redis
+wheel 
+mysql-connector-python
+flask-mysqldb 
+discord

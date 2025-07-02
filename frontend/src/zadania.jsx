@@ -3,6 +3,8 @@ import { useState} from 'react'
 
 const ZadaniaLista = ({zadania, callback}) => {
 
+    const d = new Date();
+
     const applyCSS = (id) =>
         
     {   
@@ -103,9 +105,10 @@ const ZadaniaLista = ({zadania, callback}) => {
                 
                 zadBezRodzica.map((zadanie) => 
                 {
+                    let czas = new Date(zadanie["data"]);
                         return ( 
                         <div class='mainTaskContainer'>
-                        <div key={zadanie["ID"]} class='taskRow' data-id={zadanie["ID"]}>
+                        <div key={zadanie["ID"]} class='taskRow' style={(czas.getTime()- d.getTime()<=0)?{backgroundColor:"rgb(123, 122, 117)"}:((d.getYear() == czas.getYear() && d.getMonth() == czas.getMonth() && d.getDate() == czas.getDate())?{backgroundColor:"#9f1818"}:{})}  data-id={zadanie["ID"]}>
                             <div class='taskContentWrapper'>
                                 <div class='taskName'>{zadanie["nazwa"]}</div>
                                 <div class='taskContent'>{zadanie["data"]}</div>
@@ -117,8 +120,9 @@ const ZadaniaLista = ({zadania, callback}) => {
                         <div key={"child" + zadanie["ID"]} class="children" data-id={"child" + zadanie["ID"]}>
                             {
                                     zadania.filter((zad) => zad["parentID"] == zadanie["ID"]).map((zadChild) => {
+                                        let czasChild = new Date(zadChild["data"]);
                                         return (
-                                        <div key={zadChild["ID"]} class='taskRowChild' data-id={zadChild["ID"]}>
+                                        <div key={zadChild["ID"]} class='taskRowChild' style={(czasChild.getTime()- d.getTime()<=0)?{backgroundColor:"rgb(123, 122, 117)"}:((d.getYear() == czasChild.getYear() && d.getMonth() == czasChild.getMonth() && d.getDate() == czasChild.getDate())?{backgroundColor:"#9f1818"}:{})} data-id={zadChild["ID"]}>
                                             <div class='taskContentWrapper'>
                                                 <div class='taskName'>{zadChild["nazwa"]}</div>
                                                 <div class='taskContent'>{zadChild["data"]}</div>
