@@ -25,7 +25,10 @@ def get_tasks(ID,DATE):
     if (DATE!="any"):
         where = (f"HAVING date(parents.data)='{DATE}' ")
     cursor = mysql.connection.cursor()
-    cursor.execute(f"SELECT parents.*, JSON_ARRAYAGG(JSON_OBJECT('ID', children.ID)) AS children FROM (SELECT * FROM zadania WHERE status!=100) AS parents LEFT JOIN (SELECT * FROM zadania WHERE status!=100) AS children ON parents.ID=children.parentID WHERE parents.uzytkownik={ID} GROUP BY ID {where}ORDER BY data ASC;")
+
+    # Skomplikowany kod SQL ktory pobiera zadania, przypisuje im dzieci i oblicza sredni stopien wykonania dla grupy
+    cursor.execute(f"SELECT parents.*, JSON_ARRAYAGG(JSON_OBJECT('ID', children.ID)) AS children, ratio.r AS ratio FROM (SELECT * FROM zadania WHERE status!=100) AS parents LEFT JOIN (SELECT * FROM zadania WHERE status!=100) AS children ON parents.ID=children.parentID LEFT JOIN (SELECT parentID,  SUM(status*waga)/(SUM(waga)) AS r FROM zadania GROUP BY parentID HAVING parentID!=0) AS ratio ON ratio.parentID=parents.ID  WHERE parents.uzytkownik={ID} GROUP BY ID {where}ORDER BY data ASC;")
+
     temp = cursor.fetchall()
     cursor.close()
     return jsonify({"zadania" : temp})

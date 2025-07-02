@@ -1,9 +1,11 @@
 import {useState} from "react"
 
 const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
+    const currentTime = new Date();
+
     const [nazwa, setName] = useState("")
     const [rodzic, setParent] = useState("0")
-    const [data, setDate] = useState("")
+    const [data, setDate] = useState(`${new Date().getFullYear()}-${`${new Date().getMonth()+1}`.padStart(2, 0)}-${`${new Date().getDate() + 1}`.padStart(2, 0)}T${`${new Date().getHours()}`.padStart(2, 0)}:${`${new Date().getMinutes()}`.padStart(2, 0)}`)
     const [waga, setWeight] = useState("10")
 
     const onSubmit = async(e) => {
@@ -28,7 +30,7 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
         else
             blad(0);
     }
-
+    console.log()
     return <form onSubmit={onSubmit}>
             <h2>Dodaj nowe zadanie</h2>
             <span id="error-message-form"></span>
@@ -44,7 +46,7 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
                 )}
             </select>
             <label htmlFor="formData">Data</label>
-            <input type="datetime-local" id="formData" value={data} onChange={(e) => setDate(String(e.target.value))}/>
+            <input type="datetime-local" id="formData" defaultValue={data} onChange={(e) => setDate(String(e.target.value))}/>
             <label htmlFor="formWaga">Waga</label>
             <input type="number" id="formWaga" value={waga} onChange={(e) => setWeight(e.target.value)}/>
             <button type='submit' >Dodaj zadanie</button>

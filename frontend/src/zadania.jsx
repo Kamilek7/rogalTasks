@@ -22,7 +22,6 @@ const ZadaniaLista = ({zadania, callback}) => {
 
     const usunZadania = async (id) => {
 
-        setDeletingId(id);
         applyCSS(id);
         const url = "https://tasks-backend.rogal-rogal.duckdns.org/usunZadanie/" + id;
         const options = {
@@ -34,7 +33,7 @@ const ZadaniaLista = ({zadania, callback}) => {
         setTimeout(async () => {
             const response = await fetch(url, options)
             callback();
-        }, 1400)
+        }, 1000)
 
 
     }
@@ -53,7 +52,7 @@ const ZadaniaLista = ({zadania, callback}) => {
         }
         setTimeout(async () => {
             const response = await fetch(url, options)
-            setTimeout(()=>{callback();},10);
+            callback();
             
         }, 1000)
     }
@@ -98,7 +97,7 @@ const ZadaniaLista = ({zadania, callback}) => {
 
         }
     }
-
+    console.log(zadBezRodzica)
     return <div id='tasks'>
             <div id='taskContainer'>
                 {
@@ -112,6 +111,7 @@ const ZadaniaLista = ({zadania, callback}) => {
                             <div class='taskContentWrapper'>
                                 <div class='taskName'>{zadanie["nazwa"]}</div>
                                 <div class='taskContent'>{zadanie["data"]}</div>
+                                <div class='progress-bar' style={{height:"3px", backgroundColor:"#73603c", width:"90%", margin:"auto", marginTop:"2vh", marginBottom:"1vh"}}><div class='progress' style={{height:"100%", position:"relative", top:"0", left:"0", backgroundColor:"#ddddb6", width:( zadanie["ratio"] +"%")}}></div></div>
                             </div>
                             { (JSON.parse(zadanie["children"])[0].ID)!= null &&<div class='taskUnwrap' onClick={() => {wysunZadania(zadanie["ID"])}}> v </div>}
                             { (JSON.parse(zadanie["children"])[0].ID)== null &&<div class='taskFinished'  onClick={() => {wykonajZadanie(zadanie["ID"])}}> o </div>}
@@ -120,7 +120,7 @@ const ZadaniaLista = ({zadania, callback}) => {
                         <div key={"child" + zadanie["ID"]} class="children" data-id={"child" + zadanie["ID"]}>
                             {
                                     zadania.filter((zad) => zad["parentID"] == zadanie["ID"]).map((zadChild) => {
-                                        let czasChild = new Date(zadChild["data"]);
+                                        let czasChild = new Date(zadChild["data"]+ " GMT+0200");
                                         return (
                                         <div key={zadChild["ID"]} class='taskRowChild' style={(czasChild.getTime()- d.getTime()<=0)?{backgroundColor:"rgb(123, 122, 117)"}:((d.getYear() == czasChild.getYear() && d.getMonth() == czasChild.getMonth() && d.getDate() == czasChild.getDate())?{backgroundColor:"#9f1818"}:{})} data-id={zadChild["ID"]}>
                                             <div class='taskContentWrapper'>
