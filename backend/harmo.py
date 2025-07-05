@@ -25,7 +25,7 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 # Przetwarzanie danych z harmonogramu tylko o 3 rano
-if current.strftime("%H")=='3':
+if current.strftime("%H")=='03':
     mycursor.execute("SELECT * FROM harmonogram;")
     harmoData = mycursor.fetchall()
     dayDict = {"Monday" : "a", "Tuesday": "b", "Wednesday" : "c", "Thursday" : "d", "Friday" : "e"}
@@ -64,46 +64,48 @@ if current.strftime("%H")=='3':
             mycursor.execute(sql)
         mydb.commit()
 
-toSend = []
+if int(current.strftime("%H"))>=7 and int(current.strftime("%H"))<=22:
 
-mycursor.execute(f"SELECT nazwa, TIME(data), discord FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik WHERE status!=100 AND DATE(data)='{current.strftime("%Y-%m-%d")}';")
-zadData = mycursor.fetchall()
+    toSend = []
 
-for zadanie in zadData:
-    # To bedzie zmieniane u kazdego uzytkownika
-    discordID = zadanie[2]
-    if discordID!=0:
-        msg = f"Pamiętaj o wykonaniu swojego zadania {zadanie[0]} o godzinie {zadanie[1]}!"
-        toSend.append((discordID, msg))
+    mycursor.execute(f"SELECT nazwa, TIME(data), discord FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik WHERE status!=100 AND DATE(data)='{current.strftime("%Y-%m-%d")}';")
+    zadData = mycursor.fetchall()
 
-# Nie chcialem sie meczyc z porownywaniem daty w pythonie bo latwiej to zrobic po prostu w SQL
-mycursor.execute(f"SELECT nazwa, DATE(data), discord FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik WHERE status!=100 AND DATE(data)<'{current.strftime("%Y-%m-%d")}';")
-zadData = mycursor.fetchall()
+    for zadanie in zadData:
+        # To bedzie zmieniane u kazdego uzytkownika
+        discordID = zadanie[2]
+        if discordID!=0:
+            msg = f"Pamiętaj o wykonaniu swojego zadania {zadanie[0]} o godzinie {zadanie[1]}!"
+            toSend.append((discordID, msg))
 
-for zadanie in zadData:
-    # To bedzie zmieniane u kazdego uzytkownika
-    discordID = zadanie[2]
-    if discordID!=0:
-        msg = f"Pamiętaj o wykonaniu swojego zaległego zadania {zadanie[0]} z dnia {zadanie[1]}!"
-        toSend.append((discordID, msg))
+    # Nie chcialem sie meczyc z porownywaniem daty w pythonie bo latwiej to zrobic po prostu w SQL
+    mycursor.execute(f"SELECT nazwa, DATE(data), discord FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik WHERE status!=100 AND DATE(data)<'{current.strftime("%Y-%m-%d")}';")
+    zadData = mycursor.fetchall()
+
+    for zadanie in zadData:
+        # To bedzie zmieniane u kazdego uzytkownika
+        discordID = zadanie[2]
+        if discordID!=0:
+            msg = f"Pamiętaj o wykonaniu swojego zaległego zadania {zadanie[0]} z dnia {zadanie[1]}!"
+            toSend.append((discordID, msg))
 
 
-# Wysylanie zapisanych wiadomosci przez bota
-intents = discord.Intents.default()
-intents.message_content = True
-intents.members = True  # Needed to fetch users
-client = discord.Client(intents=intents)
-@client.event
-async def on_ready():
-    print(f"Logged in as {client.user}")
-    for messageData in toSend:
-        try:
-            user = await client.fetch_user(messageData[0])
-            await user.send(messageData[1])
-            print("DM sent successfully!")
-        except Exception as e:
-            print(f"Failed to send DM: {e}")
+    # Wysylanie zapisanych wiadomosci przez bota
+    intents = discord.Intents.default()
+    intents.message_content = True
+    intents.members = True  # Needed to fetch users
+    client = discord.Client(intents=intents)
+    @client.event
+    async def on_ready():
+        print(f"Logged in as {client.user}")
+        for messageData in toSend:
+            try:
+                user = await client.fetch_user(messageData[0])
+                await user.send(messageData[1])
+                print("DM sent successfully!")
+            except Exception as e:
+                print(f"Failed to send DM: {e}")
 
-    await client.close()  # Exit after sending
+        await client.close()  # Exit after sending
 
-client.run(TOKEN)
+    client.run(TOKEN)

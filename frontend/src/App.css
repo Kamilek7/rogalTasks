@@ -18,6 +18,8 @@
   background-color: #000000bb;
   overflow: auto;
   transition: all 0.4s ease-in-out;
+  max-height: 100vh;
+  overflow: hidden;
 }
 .modal-hidden
 {
@@ -65,6 +67,7 @@ label
   background-color: #50463c90;
   border-radius: 2vw;
   border: white dashed 2px;
+  max-height: 100vh;
   transition: 0.5s all ease-in-out;
 }
 

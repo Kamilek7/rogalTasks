@@ -3,6 +3,7 @@ import ZadaniaLista from "./zadania.jsx"
 import ZadForm from "./noweZadania.jsx"
 import Harmonogram from "./harmonogram.jsx"
 import Kalendarz from "./kalendarz.jsx"
+import UserConfig from "./user.jsx"
 import { CookiesProvider, useCookies } from 'react-cookie'
 import './App.css'
 import './css/fontello.css'
@@ -10,6 +11,7 @@ import './css/fontello.css'
 
 function Page({user, setCookie}) {
   const [zadania, pobierz] = useState([]);
+  const [userData, userSet] = useState([]);
   const [harmonogram, harmoSet] = useState("")
   const [trybGlobal, trybSet] = useState([0]);
   const [oknoTaskForm, oknoTaskFormEnable] = useState(false);
@@ -19,6 +21,13 @@ function Page({user, setCookie}) {
 
   const setDate = (date) => {
     setSpecificDate(date);
+  }
+
+  const pobierzUser = async () => {
+    const response = await fetch(`https://tasks-backend.rogal-rogal.duckdns.org/userData/${user}`);
+    const data = await response.json();
+    userSet(data.dane);
+
   }
 
   const pobierzZadania = async (date) =>   {
@@ -88,6 +97,7 @@ function Page({user, setCookie}) {
       setSpecificDate(date)
       pobierzZadania(date);
       pobierzHarmonogram();
+      pobierzUser();
   }
 
   useEffect(() => {
@@ -104,7 +114,7 @@ function Page({user, setCookie}) {
       <button onClick={ () => {otworzOkno(0)}}><i class="icon-plus"></i></button>
       <button onClick={ () => {otworzOkno(1)}}><i class="icon-calendar-plus-o"></i></button>
       <button onClick={ () => {otworzOkno(2)}}><i class="icon-calendar"></i></button>
-      <button onClick={ () => {console.log("dane uzytkownika")}}><i class="icon-address-book"></i></button>
+      <button onClick={ () => {otworzOkno(3)}}><i class="icon-address-book-o"></i></button>
       <button onClick={ () => {setCookie("loginID", "")}}><i class="icon-logout"></i></button>
     </div>
     
@@ -114,6 +124,7 @@ function Page({user, setCookie}) {
         {trybGlobal==0 &&<ZadForm zadania={zadania} zamknijOkno = {() => {zamknijOkno(0)}} blad={bladOkna} callback={update} userID={user}/>}
         {trybGlobal==1 &&<Harmonogram harmonogram={harmonogram} zamknijOkno = {() => {zamknijOkno(1)}} blad={bladOkna} callback={update} userID={user}/>}
         {trybGlobal==2 &&<Kalendarz zamknijOkno = {() => {zamknijOkno(2)}} blad={bladOkna} callback={update} data = {setDate}/>}
+        {trybGlobal==3 &&<UserConfig dane={userData} zamknijOkno = {() => {zamknijOkno(3)}} blad={bladOkna} userID={user}/>}
       </div>
 
     </div>

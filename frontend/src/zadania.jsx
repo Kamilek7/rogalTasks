@@ -97,7 +97,6 @@ const ZadaniaLista = ({zadania, callback}) => {
 
         }
     }
-    console.log(zadBezRodzica)
     return <div id='tasks'>
             <div id='taskContainer'>
                 {

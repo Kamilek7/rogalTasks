@@ -117,6 +117,7 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
             </select>
             <input id='nazwa' type='text' onChange={(e) => setName(e.target.value)} placeholder={harmonogram[currentH].nazwa}></input>
             <input id='waga' type='number' onChange={(e) => setPriority(e.target.value)} placeholder={harmonogram[currentH].waga}></input>
+            {harmonogram[currentH].nazwa!='Nazwa'&&<button>Usuń wybraną aktywność</button>}
             <div class='harmContainer'>
                 <table>
                     <tbody>

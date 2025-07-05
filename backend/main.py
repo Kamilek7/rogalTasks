@@ -110,6 +110,7 @@ def register():
     cursor = mysql.connection.cursor()
     cursor.execute(f"SELECT login FROM uzytkownicy WHERE login='{login}';")
     temp = cursor.fetchall()
+    cursor.close()
     if len(temp) >0:
         return jsonify({"message" : "Dany użytkownik już istnieje!"}), 402
     else:
@@ -137,15 +138,22 @@ def login():
     cursor = mysql.connection.cursor()
     cursor.execute(f"SELECT id, login, haslo FROM uzytkownicy WHERE login='{login}';")
     temp = cursor.fetchall()
+    cursor.close()
     if len(temp) ==0:
         return jsonify({"message" : "Dany użytkownik nie istnieje!"}), 410
     else:
         password = temp[0]['haslo']
-        result = bcrypt.check_password_hash(password, "eft20031")
         if not bcrypt.check_password_hash(password, haslo):
             return jsonify({"message" : "Błędne hasło!"}), 411
         else:
             return jsonify({"dane" : temp[0]['id']}), 208
+
+@app.route("/userData/<int:ID>")
+def getUserData(ID):
+    cursor = mysql.connection.cursor()
+    cursor.execute(f"SELECT * FROM uzytkownicy LEFT JOIN zadania ON zadania.uzytkownik=uzytkownicy.ID WHERE uzytkownicy.ID={ID};")
+    result = cursor.fetchall()
+    return jsonify({"dane":result}),209
 
 if __name__ == "__main__":
     app.run(host='192.168.1.94', debug=True)

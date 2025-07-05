@@ -5,7 +5,7 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
 
     const [nazwa, setName] = useState("")
     const [rodzic, setParent] = useState("0")
-    const [data, setDate] = useState(`${new Date().getFullYear()}-${`${new Date().getMonth()+1}`.padStart(2, 0)}-${`${new Date().getDate() + 1}`.padStart(2, 0)}T${`${new Date().getHours()}`.padStart(2, 0)}:${`${new Date().getMinutes()}`.padStart(2, 0)}`)
+    const [data, setDate] = useState(`${new Date().getFullYear()}-${`${new Date().getMonth()+1}`.padStart(2, 0)}-${`${new Date().getDate() + 1}`.padStart(2, 0)}T12:00`)
     const [waga, setWeight] = useState("10")
 
     const onSubmit = async(e) => {
@@ -30,7 +30,6 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
         else
             blad(0);
     }
-    console.log()
     return <form onSubmit={onSubmit}>
             <h2>Dodaj nowe zadanie</h2>
             <span id="error-message-form"></span>

@@ -368,11 +368,33 @@ body
 {
   margin:auto;
   display:block;
-  margin-top:2vh;
+  margin-bottom:1vh;
 }
+#formDiv > input[type=submit]
+{
 
+  margin-top:3vh;
+}
+#formDiv label
+{
+    position:relative; 
+    right:5.3rem;
+    top:0.6rem; 
+    padding: 0 0.5vw; 
+    background-color:#101010; 
+    border-radius:0.5vw;
+}
 #headInfo
 {
   text-align: center;
   font-size: 1.5vw;
+}
+.formRow > label
+{
+    position:relative; 
+    left:1.6rem;
+    top:-1.1rem;
+    padding: 0 0.5vw; 
+    background-color:#101010; 
+    border-radius:0.5vw;
 }

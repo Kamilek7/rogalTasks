@@ -1,21 +1,18 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import './css/fontello.css'
 
 
 function Login({onLogin}) {
     const [mode, setMode] = useState("login")
-    const [login, setLogin] = useState("")
-    const [haslo, setPass] = useState("")
-    const validate = async(login1, password1) => {
-        if (login1=="人")
-            login1=login;
-        if (password1=="人")
-            password1=haslo
+    const loginRef = useRef(null);
+    const passRef = useRef(null);
 
+    const validate = async() => {
         const dane = {
-            login: login1, haslo: password1
+            login: loginRef.current?.value, haslo: passRef.current?.value
         }
+
         const url = "https://tasks-backend.rogal-rogal.duckdns.org/validateData"
         const options = {
             method: "POST",
@@ -38,10 +35,10 @@ function Login({onLogin}) {
         }
     }
     
-    const register = async(login, password, e) => {
+    const register = async(e) => {
         e.preventDefault()
         const dane = {
-            login: login, haslo: password
+            login: loginRef.current?.value, haslo: passRef.current?.value
         }
         const url = "https://tasks-backend.rogal-rogal.duckdns.org/register"
         const options = {
@@ -54,7 +51,7 @@ function Login({onLogin}) {
         const response = await fetch(url, options);
         if (response.status==206)
         {
-            onLogin({login:login, haslo:password, e:e});
+            onLogin({login:loginRef.current?.value, haslo:passRef.current?.value, e:e});
         }
         else
         {
@@ -64,30 +61,30 @@ function Login({onLogin}) {
         }
         
     }
+
+    useEffect(()=>{
+        setTimeout(() =>{
+            validate(loginRef.current?.value, passRef.current?.value)
+        }, 400)
+        
+    })
+    
+
   return <>
   
-  {mode=="login" &&<div><button onClick={()=>{setMode("register")}}>Zarejestruj się</button><div id='headInfo'>Zaloguj się do usługi:</div>
-    <form onSubmit={(e) => {onLogin({login:login, haslo:haslo, e:e});}}>
+    <div><button onClick={()=>{mode=="login"? setMode("register"):setMode("login")}}>{mode=="login"?"Zarejestruj się":"Zaloguj się"}</button><div id='headInfo'>{mode=="login"?"Zaloguj się do usługi:":"Zarejestruj się:"}</div>
+    <form onSubmit={(e) => {mode=="login"? onLogin({login:loginRef.current?.value, haslo:passRef.current?.value, e:e}):register(e)}}>
         <div id='formDiv'>
             
+            
             <span style={{color:"red", height:"3vh", textAlign:"center"}} id='errorCode'></span>
-            <input onChange={(e) => {setLogin(e.target.value); validate(e.target.value, "人");}} type='text'></input>
-            <input onChange={(e) => {setPass(e.target.value); validate("人",e.target.value);}} type='password'></input>
+            <label >Login</label>
+            <input ref={loginRef} onChange={(e) => {validate}} type='text'></input>
+            <label >Hasło</label>
+            <input ref={passRef} id="pass" onChange={(e) => {validate}} type='password'></input>
             <input id='submit' disabled type='submit' value='Zaloguj się'></input>
         </div>
     </form></div>
-    }
-      {mode=="register" &&<div><button onClick={()=>{setMode("login")}} >Zaloguj się</button><div id='headInfo'>Zarejestruj się:</div>
-    <form onSubmit={(e) => {register(login, haslo, e);}}>
-        <div id='formDiv'>
-            
-            <span style={{color:"red", height:"3vh", textAlign:"center"}} id='errorCode'></span>
-            <input onChange={(e) => {setLogin(e.target.value); validate(e.target.value, "人");}} type='text'></input>
-            <input onChange={(e) => {setPass(e.target.value); validate("人",e.target.value);}} type='password'></input>
-            <input id='submit' disabled type='submit' value='Zarejestruj się'></input>
-        </div>
-    </form></div>
-    }
   </>
 }
 
