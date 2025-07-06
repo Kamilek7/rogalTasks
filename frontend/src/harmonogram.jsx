@@ -14,7 +14,21 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
 
     harmonogram["new"] = {nazwa: "Nazwa",dni:[], waga:"10"};
 
-
+    const removeH = async (ID) =>
+    {
+        const url = "https://tasks-backend.rogal-rogal.duckdns.org/harmoRemove/" +ID;
+        const options = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }
+        const response = await fetch(url, options);
+        setCurrent("new");
+        setCurrentID("new");
+        zamknijOkno();
+        callback();
+    }
 
     const setH = (e) =>
     {
@@ -117,7 +131,7 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
             </select>
             <input id='nazwa' type='text' onChange={(e) => setName(e.target.value)} placeholder={harmonogram[currentH].nazwa}></input>
             <input id='waga' type='number' onChange={(e) => setPriority(e.target.value)} placeholder={harmonogram[currentH].waga}></input>
-            {harmonogram[currentH].nazwa!='Nazwa'&&<button>Usuń wybraną aktywność</button>}
+            {harmonogram[currentH].nazwa!='Nazwa'&&<button onClick={(e) => {e.preventDefault(); removeH(harmonogram[currentH].ID)}}>Usuń wybraną aktywność</button>}
             <div class='harmContainer'>
                 <table>
                     <tbody>

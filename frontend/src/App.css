@@ -20,6 +20,7 @@
   transition: all 0.4s ease-in-out;
   max-height: 100vh;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 .modal-hidden
 {
@@ -95,4 +96,52 @@ label
   display: block;
   margin: 20px auto;
   text-align: center;
+}
+
+.history 
+{
+    margin: auto;
+    display: block;
+    width: fit-content;
+    max-height: 40vh;
+    overflow: scroll;
+    border-collapse: separate; 
+    border-spacing: 0 1em;
+    border-radius: 1vw;
+}
+.history td
+{
+  padding: 1vh 1vw;
+  margin:0;
+  background-color: #1e1e1e79;
+}
+.history td:first-child {
+    border-left-style: solid;
+    border-color: #1e1e1e;
+    border-radius: 10px 0 0 10px;
+}
+.history td:last-child {
+  
+    border-right-style: solid;
+    border-color: #1e1e1e;
+    border-radius: 0 10px 10px 0;
+}
+.history th
+{
+  top:0;
+  position:sticky;
+  padding: 1vh 1vw;
+  margin:0;
+  background-color: #1e1e1e;
+}
+.history th:first-child {
+    border-left-style: solid;
+    border-color: #000000;
+    border-radius: 10px 0 0 10px;
+}
+.history th:last-child {
+  
+    border-right-style: solid;
+    border-color: #000000;
+    border-radius: 0 10px 10px 0;
 }

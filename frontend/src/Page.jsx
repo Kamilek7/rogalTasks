@@ -93,6 +93,10 @@ function Page({user, setCookie}) {
 
   }
 
+  const logout = () => {
+    setCookie("loginID", "")
+  }
+
   const update = (date=specificDate) => {
       setSpecificDate(date)
       pobierzZadania(date);
@@ -115,7 +119,7 @@ function Page({user, setCookie}) {
       <button onClick={ () => {otworzOkno(1)}}><i class="icon-calendar-plus-o"></i></button>
       <button onClick={ () => {otworzOkno(2)}}><i class="icon-calendar"></i></button>
       <button onClick={ () => {otworzOkno(3)}}><i class="icon-address-book-o"></i></button>
-      <button onClick={ () => {setCookie("loginID", "")}}><i class="icon-logout"></i></button>
+      <button onClick={ () => {logout()}}><i class="icon-logout"></i></button>
     </div>
     
     <div className="modal-hidden">
@@ -124,7 +128,7 @@ function Page({user, setCookie}) {
         {trybGlobal==0 &&<ZadForm zadania={zadania} zamknijOkno = {() => {zamknijOkno(0)}} blad={bladOkna} callback={update} userID={user}/>}
         {trybGlobal==1 &&<Harmonogram harmonogram={harmonogram} zamknijOkno = {() => {zamknijOkno(1)}} blad={bladOkna} callback={update} userID={user}/>}
         {trybGlobal==2 &&<Kalendarz zamknijOkno = {() => {zamknijOkno(2)}} blad={bladOkna} callback={update} data = {setDate}/>}
-        {trybGlobal==3 &&<UserConfig dane={userData} zamknijOkno = {() => {zamknijOkno(3)}} blad={bladOkna} userID={user}/>}
+        {trybGlobal==3 &&<UserConfig dane={userData} zamknijOkno = {() => {zamknijOkno(3)}} blad={bladOkna} userID={user} callback={update} logout={logout}/>}
       </div>
 
     </div>

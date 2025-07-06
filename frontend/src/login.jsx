@@ -3,7 +3,7 @@ import './App.css'
 import './css/fontello.css'
 
 
-function Login({onLogin}) {
+function Login({error, onLogin}) {
     const [mode, setMode] = useState("login")
     const loginRef = useRef(null);
     const passRef = useRef(null);
@@ -12,7 +12,6 @@ function Login({onLogin}) {
         const dane = {
             login: loginRef.current?.value, haslo: passRef.current?.value
         }
-
         const url = "https://tasks-backend.rogal-rogal.duckdns.org/validateData"
         const options = {
             method: "POST",
@@ -30,7 +29,7 @@ function Login({onLogin}) {
         }
         else
         {
-            document.getElementById("errorCode").innerHTML = "";
+            document.getElementById("errorCode").innerHTML = error;
             document.getElementById("submit").removeAttribute("disabled");
         }
     }
@@ -77,12 +76,12 @@ function Login({onLogin}) {
         <div id='formDiv'>
             
             
-            <span style={{color:"red", height:"3vh", textAlign:"center"}} id='errorCode'></span>
+            <span style={{color:"red", height:"3vh", textAlign:"center"}} id='errorCode'>{error}</span>
             <label >Login</label>
-            <input ref={loginRef} onChange={(e) => {validate}} type='text'></input>
+            <input ref={loginRef} onChange={(e) => {validate()}} type='text'></input>
             <label >Hasło</label>
-            <input ref={passRef} id="pass" onChange={(e) => {validate}} type='password'></input>
-            <input id='submit' disabled type='submit' value='Zaloguj się'></input>
+            <input ref={passRef} id="pass" onChange={(e) => {validate()}} type='password'></input>
+            <input id='submit' disabled type='submit' value={mode=="login"?"Zaloguj się":"Zarejestruj się"}></input>
         </div>
     </form></div>
   </>

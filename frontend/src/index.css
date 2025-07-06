@@ -398,3 +398,7 @@ body
     background-color:#101010; 
     border-radius:0.5vw;
 }
+.formRow > input:not([type=submit])
+{
+  min-width:10vw;
+}

@@ -110,13 +110,15 @@ def register():
     cursor = mysql.connection.cursor()
     cursor.execute(f"SELECT login FROM uzytkownicy WHERE login='{login}';")
     temp = cursor.fetchall()
-    cursor.close()
     if len(temp) >0:
+        cursor.close()
         return jsonify({"message" : "Dany użytkownik już istnieje!"}), 402
     else:
         cursor.execute(f'INSERT INTO uzytkownicy (login, haslo) VALUES ("{login}", "{haslo}");')
         mysql.connection.commit()
+        cursor.close()
         return jsonify({"message" : "Dodano uzytkownika do bazy!"}), 206
+    
     
 @app.route("/validateData", methods=["POST"])
 def validate():
@@ -153,7 +155,36 @@ def getUserData(ID):
     cursor = mysql.connection.cursor()
     cursor.execute(f"SELECT * FROM uzytkownicy LEFT JOIN zadania ON zadania.uzytkownik=uzytkownicy.ID WHERE uzytkownicy.ID={ID};")
     result = cursor.fetchall()
+    cursor.close()
     return jsonify({"dane":result}),209
+
+@app.route("/harmoRemove/<int:ID>", methods=["DELETE"])
+def removeHarmo(ID):
+    cursor = mysql.connection.cursor()
+    cursor.execute(f"DELETE FROM harmonogram WHERE ID={ID};")
+    mysql.connection.commit()
+    cursor.close()
+    return jsonify({"wynik": "Usunięto wybrany wpis"}),210
+
+@app.route("/userChange/<int:ID>", methods=["PATCH"])
+def changeUser(ID):
+    what = request.json.get("what")
+    value = request.json.get("value")
+    if what=="haslo":
+        value = bcrypt.generate_password_hash(value).decode('utf-8')
+    cursor = mysql.connection.cursor()
+    cursor.execute(f"UPDATE uzytkownicy SET {what}='{value}' WHERE ID={ID};")
+    mysql.connection.commit()
+    cursor.close()
+    return jsonify({"wynik": "Edytowano wybrany wpis"}),211
+
+@app.route("/userRemove/<int:ID>", methods=["DELETE"])
+def removeUser(ID):
+    cursor = mysql.connection.cursor()
+    cursor.execute(f"DELETE FROM uzytkownicy WHERE ID={ID};")
+    mysql.connection.commit()
+    cursor.close()
+    return jsonify({"wynik": "Usunięto uzytkownika!"}),212
 
 if __name__ == "__main__":
     app.run(host='192.168.1.94', debug=True)

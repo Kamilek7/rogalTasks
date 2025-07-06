@@ -8,6 +8,7 @@ import { useCookies } from 'react-cookie'
 
 function App() {
   const [cookies, setCookie, removeCookie] = useCookies(['loginID']);
+  const [errorState, setError] = useState("");
   const handleLogin = async (data) => {
     data.e.preventDefault()
     const dane = {
@@ -23,14 +24,22 @@ function App() {
     }
     const response = await fetch(url, options);
     const loginData = await response.json();
-    setCookie('loginID', loginData.dane);
+    if (response.status==208){
+      setError("");
+      setCookie('loginID', loginData.dane);
+    }
+    else
+    {
+      setError(loginData.message);
+    }
+
   }
   return <>
   
     <div id='logoContainer'><img src='..\assets\rogal.png'></img></div>
 
 
-      {cookies.loginID ? <Page user={cookies.loginID} setCookie={setCookie} /> : <Login onLogin={handleLogin} />}
+      {cookies.loginID ? <Page user={cookies.loginID} setCookie={setCookie} /> : <Login error={errorState} onLogin={handleLogin} />}
 
 
   </>
