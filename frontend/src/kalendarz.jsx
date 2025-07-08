@@ -36,11 +36,18 @@ const Kalendarz = ({zamknijOkno, blad, callback, data}) =>
             <table>
                 <tbody>
                     <tr>{days.map((day) => (<th>{day}</th>))}</tr>
-                    {kalendarz.map((tydzien) => (
+                    {kalendarz.map((tydzien) => {
+                        return(
                         <tr>
-                            {tydzien.map((dzien)=>(<td><div type="button" onClick={() => {cellClicked([rokKalendarza,(miesiacKalendarza+1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}), (dzien).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})].join("-"))}} class={(dzien!="") ? "kalendarz-active" : "kalendarz-disabled"}><p>{dzien}</p></div></td>))}
+                            
+                            {tydzien.map((dzien)=>{                        
+                                let date = [rokKalendarza,(miesiacKalendarza+1).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}), (dzien).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})].join("-");
+                                const d = new Date(date);
+                                let condition = (d.getYear() >= currentTime.getYear() && d.getMonth() >= currentTime.getMonth() && d.getDate() >= currentTime.getDate())
+                                return (<td>{d.getTime()>currentTime.getTime() || condition? (<div type="button" onClick={() => {cellClicked(date)}} class={(dzien!="") ? "kalendarz-active" : "kalendarz-disabled"}><p>{dzien}</p></div>) : (<div type="button" disabled class={(dzien!="") ? "kalendarz-notactive" : "kalendarz-disabled"}><p>{dzien}</p></div>)}</td>)
+                                })}
                         </tr>
-                    ))}
+                    );})}
                 </tbody>
             </table>
         )
@@ -50,9 +57,6 @@ const Kalendarz = ({zamknijOkno, blad, callback, data}) =>
 
             <select onChange={(e) => {changeYear(parseInt(e.target.value))}} defaultValue={currentTime.getFullYear()}>
                 {years.map((year)=> (<option value={year}>{year}</option>))}
-            </select>
-            <select onChange={(e) => {changeMonth(parseInt(e.target.value))}} defaultValue={currentTime.getMonth()}>
-                {miesiace.map((miesiac)=> (<option value={miesiace.indexOf(miesiac)}>{miesiac}</option>))}
             </select>
             <select onChange={(e) => {changeMonth(parseInt(e.target.value))}} defaultValue={currentTime.getMonth()}>
                 {miesiace.map((miesiac)=> (<option value={miesiace.indexOf(miesiac)}>{miesiac}</option>))}

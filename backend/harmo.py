@@ -64,57 +64,58 @@ if current.strftime("%H")=='03':
             mycursor.execute(sql)
         mydb.commit()
 
-mycursor.execute("SELECT ID, ilePowiadomien FROM uzytkownicy;")
+mycursor.execute("SELECT ID, ilePowiadomien, discord FROM uzytkownicy;")
 userData = mycursor.fetchall()
 for user in userData:
+    if int(user[1])!=0 and int(user[2]!=0):
+        # Generowanie godzin wysylania na bazie podanych ilosci powiadomien
+        lst = []
+        for j in range(int(user[1])):
+            temp = 7+int(j*(16/user[1]))
+            if temp>9:
+                lst.append(f"{temp}")
+            else:
+                lst.append(f"0{temp}")
 
-    # Generowanie godzin wysylania na bazie podanych ilosci powiadomien
-    lst = []
-    for j in range(user[1]):
-        if j>9:
-            lst.append(f"{7+int(j*(16/user[1]))}")
-        else:
-            lst.append(f"0{7+int(j*(16/user[1]))}")
+        if current.strftime("%H") in lst:
+            toSend = []
+            mycursor.execute(f"SELECT nazwa, TIME(data), discord FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik WHERE status!=100 AND DATE(data)='{current.strftime("%Y-%m-%d")} AND uzytkownicy.ID={user[0]}';")
+            zadData = mycursor.fetchall()
+            for zadanie in zadData:
+                # To bedzie zmieniane u kazdego uzytkownika
+                discordID = zadanie[2]
+                if discordID!=0:
+                    msg = f"Pamiętaj o wykonaniu swojego zadania {zadanie[0]} o godzinie {zadanie[1]}!"
+                    toSend.append((discordID, msg))
 
-    if current.strftime("%H") in lst:
-        toSend = []
-        mycursor.execute(f"SELECT nazwa, TIME(data), discord FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik WHERE status!=100 AND DATE(data)='{current.strftime("%Y-%m-%d")} AND uzytkownicy.ID={user[0]}';")
-        zadData = mycursor.fetchall()
-        for zadanie in zadData:
-            # To bedzie zmieniane u kazdego uzytkownika
-            discordID = zadanie[2]
-            if discordID!=0:
-                msg = f"Pamiętaj o wykonaniu swojego zadania {zadanie[0]} o godzinie {zadanie[1]}!"
-                toSend.append((discordID, msg))
+            # Nie chcialem sie meczyc z porownywaniem daty w pythonie bo latwiej to zrobic po prostu w SQL
+            mycursor.execute(f"SELECT nazwa, DATE(data), discord FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik WHERE status!=100 AND DATE(data)<'{current.strftime("%Y-%m-%d")}';")
+            zadData = mycursor.fetchall()
 
-        # Nie chcialem sie meczyc z porownywaniem daty w pythonie bo latwiej to zrobic po prostu w SQL
-        mycursor.execute(f"SELECT nazwa, DATE(data), discord FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik WHERE status!=100 AND DATE(data)<'{current.strftime("%Y-%m-%d")}';")
-        zadData = mycursor.fetchall()
-
-        for zadanie in zadData:
-            # To bedzie zmieniane u kazdego uzytkownika
-            discordID = zadanie[2]
-            if discordID!=0:
-                msg = f"Pamiętaj o wykonaniu swojego zaległego zadania {zadanie[0]} z dnia {zadanie[1]}!"
-                toSend.append((discordID, msg))
+            for zadanie in zadData:
+                # To bedzie zmieniane u kazdego uzytkownika
+                discordID = zadanie[2]
+                if discordID!=0:
+                    msg = f"Pamiętaj o wykonaniu swojego zaległego zadania {zadanie[0]} z dnia {zadanie[1]}!"
+                    toSend.append((discordID, msg))
 
 
-        # Wysylanie zapisanych wiadomosci przez bota
-        intents = discord.Intents.default()
-        intents.message_content = True
-        intents.members = True  # Needed to fetch users
-        client = discord.Client(intents=intents)
-        @client.event
-        async def on_ready():
-            print(f"Logged in as {client.user}")
-            for messageData in toSend:
-                try:
-                    user = await client.fetch_user(messageData[0])
-                    await user.send(messageData[1])
-                    print("DM sent successfully!")
-                except Exception as e:
-                    print(f"Failed to send DM: {e}")
+            # Wysylanie zapisanych wiadomosci przez bota
+            intents = discord.Intents.default()
+            intents.message_content = True
+            intents.members = True  # Needed to fetch users
+            client = discord.Client(intents=intents)
+            @client.event
+            async def on_ready():
+                print(f"Logged in as {client.user}")
+                for messageData in toSend:
+                    try:
+                        user = await client.fetch_user(messageData[0])
+                        await user.send(messageData[1])
+                        print("DM sent successfully!")
+                    except Exception as e:
+                        print(f"Failed to send DM: {e}")
 
-            await client.close()  # Exit after sending
+                await client.close()  # Exit after sending
 
-        client.run(TOKEN)
+            client.run(TOKEN)

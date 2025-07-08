@@ -58,7 +58,8 @@ function UserConfig({dane, zamknijOkno, blad, userID, callback, logout}) {
                     <input id='submit' onClick={()=>update(element)} style={{marginLeft: "1.4vw"}} type='submit' value='Zmień'></input>
                 </div>)
             })}
-            <button onClick={()=>{removeAcc()}}>Usuń konto</button>
+            <button style={{backgroundColor:"rgb(59, 66, 136)"}} onClick={()=>{window.open('https://discord.com/oauth2/authorize?client_id=1092757546420416522', '_blank')}}>Dodaj bota do swojego serwera</button>
+            <button style={{backgroundColor:"#602323"}} onClick={()=>{removeAcc()}}>Usuń konto</button>
             <button onClick={()=>{setMode("historia")}}>Pokaż historię zadań</button></div>):
             (
                 <div><div style={{fontSize:"2vw", fontWeight:"bold", marginBottom:"1.1vw"}}>Historia zadań</div>

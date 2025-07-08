@@ -42,7 +42,7 @@ def addTask(USER):
 
     if nazwa and data and rodzic and waga:
         cursor = mysql.connection.cursor()
-        cursor.execute(f"INSERT INTO zadania (status, uzytkownik, nazwa, data, parentID, waga) VALUES (1, {USER}, '{nazwa}', '{data}', {rodzic}, {waga})")
+        cursor.execute(f"INSERT INTO zadania (status, uzytkownik, nazwa, data, parentID, waga) VALUES (0, {USER}, '{nazwa}', '{data}', {rodzic}, {waga})")
         mysql.connection.commit()
         cursor.close()
         return jsonify({"message":"Udalo sie dodac zadanie!"}), 201
