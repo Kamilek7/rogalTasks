@@ -14,7 +14,7 @@ function App() {
     const dane = {
       login: data.login, haslo: data.haslo
     }
-    const url = "https://tasks-backend.rogal-rogal.duckdns.org/login"
+    const url = "https://tasks-backend.rogalrogalrogalrogal.online/login"
     const options = {
       method: "POST",
       headers:  {

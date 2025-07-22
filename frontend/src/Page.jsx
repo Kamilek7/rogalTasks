@@ -24,20 +24,20 @@ function Page({user, setCookie}) {
   }
 
   const pobierzUser = async () => {
-    const response = await fetch(`https://tasks-backend.rogal-rogal.duckdns.org/userData/${user}`);
+    const response = await fetch(`https://tasks-backend.rogalrogalrogalrogal.online/userData/${user}`);
     const data = await response.json();
     userSet(data.dane);
 
   }
 
   const pobierzZadania = async (date) =>   {
-    const response = await fetch(`https://tasks-backend.rogal-rogal.duckdns.org/zadania/${user}/${date}`);
+    const response = await fetch(`https://tasks-backend.rogalrogalrogalrogal.online/zadania/${user}/${date}`);
     const data = await response.json();
     pobierz(data.zadania);
   }
 
     const pobierzHarmonogram = async () =>   {
-        const response = await fetch("https://tasks-backend.rogal-rogal.duckdns.org/harmonogram/" + user);
+        const response = await fetch("https://tasks-backend.rogalrogalrogalrogal.online/harmonogram/" + user);
         const data = await response.json();
         var newData = data.harmonogram;
         for (var i=0; i<data.harmonogram.length;i++)

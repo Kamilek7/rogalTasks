@@ -23,7 +23,7 @@ const ZadaniaLista = ({zadania, callback}) => {
     const usunZadania = async (id) => {
 
         applyCSS(id);
-        const url = "https://tasks-backend.rogal-rogal.duckdns.org/usunZadanie/" + id;
+        const url = "https://tasks-backend.rogalrogalrogalrogal.online/usunZadanie/" + id;
         const options = {
             method: "DELETE",
             headers: {
@@ -43,7 +43,7 @@ const ZadaniaLista = ({zadania, callback}) => {
     const wykonajZadanie = async (id) => {
 
         applyCSS(id);
-        const url = "https://tasks-backend.rogal-rogal.duckdns.org/wykonajZadanie/" + id;
+        const url = "https://tasks-backend.rogalrogalrogalrogal.online/wykonajZadanie/" + id;
         const options = {
             method: "PATCH",
             headers: {

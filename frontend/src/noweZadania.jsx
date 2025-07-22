@@ -13,7 +13,7 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
         const dane = {
             nazwa, rodzic, data, waga, userID
         }
-        const url = "https://tasks-backend.rogal-rogal.duckdns.org/noweZadanie/" + userID;
+        const url = "https://tasks-backend.rogalrogalrogalrogal.online/noweZadanie/" + userID;
         const options = {
             method: "POST",
             headers:  {

@@ -16,7 +16,7 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
 
     const removeH = async (ID) =>
     {
-        const url = "https://tasks-backend.rogal-rogal.duckdns.org/harmoRemove/" +ID;
+        const url = "https://tasks-backend.rogalrogalrogalrogal.online/harmoRemove/" +ID;
         const options = {
             method: "DELETE",
             headers: {
@@ -81,7 +81,7 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
         var status = 0;
         if (currentHID=="new")
         {
-            const url = "https://tasks-backend.rogal-rogal.duckdns.org/harmonogramCreate/" +userID
+            const url = "https://tasks-backend.rogalrogalrogalrogal.online/harmonogramCreate/" +userID
             const options = {
                 method: "POST",
                 headers:  {
@@ -98,7 +98,7 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
                 dane.waga = harmonogram[currentH].waga
             if (nazwa=="")
                 dane.nazwa = harmonogram[currentH].nazwa
-            const url = "https://tasks-backend.rogal-rogal.duckdns.org/harmonogramEdit/" + currentHID
+            const url = "https://tasks-backend.rogalrogalrogalrogal.online/harmonogramEdit/" + currentHID
             const options = {
                 method: "PATCH",
                 headers:  {

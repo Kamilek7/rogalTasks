@@ -13,7 +13,7 @@ function UserConfig({dane, zamknijOkno, blad, userID, callback, logout}) {
 
     const removeAcc = async () =>
     {
-        const url = "https://tasks-backend.rogal-rogal.duckdns.org/userRemove/" +userID;
+        const url = "https://tasks-backend.rogalrogalrogalrogal.online/userRemove/" +userID;
         const options = {
             method: "DELETE",
             headers: {
@@ -27,7 +27,7 @@ function UserConfig({dane, zamknijOkno, blad, userID, callback, logout}) {
 
     const update = async (element) =>
     {
-        const url = "https://tasks-backend.rogal-rogal.duckdns.org/userChange/" +userID;
+        const url = "https://tasks-backend.rogalrogalrogalrogal.online/userChange/" +userID;
         const danet = {
             what: element.nameSQL,
             value: element.value

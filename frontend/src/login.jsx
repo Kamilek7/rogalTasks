@@ -12,7 +12,7 @@ function Login({error, onLogin}) {
         const dane = {
             login: loginRef.current?.value, haslo: passRef.current?.value
         }
-        const url = "https://tasks-backend.rogal-rogal.duckdns.org/validateData"
+        const url = "https://tasks-backend.rogalrogalrogalrogal.online/validateData"
         const options = {
             method: "POST",
             headers:  {
@@ -39,7 +39,7 @@ function Login({error, onLogin}) {
         const dane = {
             login: loginRef.current?.value, haslo: passRef.current?.value
         }
-        const url = "https://tasks-backend.rogal-rogal.duckdns.org/register"
+        const url = "https://tasks-backend.rogalrogalrogalrogal.online/register"
         const options = {
             method: "POST",
             headers:  {

@@ -60,7 +60,7 @@ if current.strftime("%H")=='03':
         for hours in new:
             date = f"{current.strftime("%Y-%m-%d")} {hours[:5]}"
             nazwa = f"{name} - {hours}"
-            sql = f"INSERT INTO zadania (status, waga, data, nazwa, parentID, uzytkownik) VALUES (1, {weight}, '{date}', '{nazwa}', 0, {user});"
+            sql = f"INSERT INTO zadania (status, waga, data, nazwa, parentID, uzytkownik) VALUES (0, {weight}, '{date}', '{nazwa}', 0, {user});"
             mycursor.execute(sql)
         mydb.commit()
 
