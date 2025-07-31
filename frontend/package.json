@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "cookie": "^1.0.2",
     "react": "^19.1.0",
     "react-cookie": "^8.0.1",
     "react-dom": "^19.1.0"
@@ -25,5 +26,5 @@
     "globals": "^16.0.0",
     "vite": "^6.3.5"
   },
-  "proxy": "http://192.168.1.94:5000"
+  "proxy": "http://192.168.1.101:5000"
 }

@@ -187,4 +187,4 @@ def removeUser(ID):
     return jsonify({"wynik": "Usunięto uzytkownika!"}),212
 
 if __name__ == "__main__":
-    app.run(host='192.168.1.94', debug=True)
+    app.run(host='0.0.0.0', debug=True)

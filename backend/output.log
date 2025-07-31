@@ -1,32 +1,10 @@
  * Serving Flask app 'main'
  * Debug mode: on
 [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://192.168.1.94:5000
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.101:5000
 [33mPress CTRL+C to quit[0m
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 548-329-831
-172.18.0.5 - - [22/Jul/2025 13:13:52] "OPTIONS /validateData HTTP/1.1" 200 -
-172.18.0.5 - - [22/Jul/2025 13:13:52] "OPTIONS /validateData HTTP/1.1" 200 -
-172.18.0.5 - - [22/Jul/2025 13:13:52] "OPTIONS /validateData HTTP/1.1" 200 -
-172.18.0.5 - - [22/Jul/2025 13:13:52] "OPTIONS /validateData HTTP/1.1" 200 -
-172.18.0.5 - - [22/Jul/2025 13:13:52] "OPTIONS /validateData HTTP/1.1" 200 -
-172.18.0.5 - - [22/Jul/2025 13:13:52] "OPTIONS /validateData HTTP/1.1" 200 -
-172.18.0.5 - - [22/Jul/2025 13:13:52] "[31m[1mPOST /validateData HTTP/1.1[0m" 407 -
-172.18.0.5 - - [22/Jul/2025 13:13:52] "[31m[1mPOST /validateData HTTP/1.1[0m" 409 -
-172.18.0.5 - - [22/Jul/2025 13:13:52] "[31m[1mPOST /validateData HTTP/1.1[0m" 409 -
-172.18.0.5 - - [22/Jul/2025 13:13:52] "[35m[1mPOST /validateData HTTP/1.1[0m" 207 -
-172.18.0.5 - - [22/Jul/2025 13:13:52] "[31m[1mPOST /validateData HTTP/1.1[0m" 407 -
-172.18.0.5 - - [22/Jul/2025 13:13:52] "[35m[1mPOST /validateData HTTP/1.1[0m" 207 -
-172.18.0.5 - - [22/Jul/2025 13:22:37] "OPTIONS /validateData HTTP/1.1" 200 -
-172.18.0.5 - - [22/Jul/2025 13:22:37] "[31m[1mPOST /validateData HTTP/1.1[0m" 409 -
-172.18.0.5 - - [22/Jul/2025 13:22:44] "OPTIONS /validateData HTTP/1.1" 200 -
-172.18.0.5 - - [22/Jul/2025 13:22:44] "OPTIONS /validateData HTTP/1.1" 200 -
-172.18.0.5 - - [22/Jul/2025 13:22:44] "[31m[1mPOST /validateData HTTP/1.1[0m" 407 -
-172.18.0.5 - - [22/Jul/2025 13:22:44] "[35m[1mPOST /validateData HTTP/1.1[0m" 207 -
-172.18.0.5 - - [22/Jul/2025 13:22:44] "[35m[1mPOST /validateData HTTP/1.1[0m" 207 -
-172.18.0.5 - - [22/Jul/2025 13:38:16] "OPTIONS /validateData HTTP/1.1" 200 -
-172.18.0.5 - - [22/Jul/2025 13:38:16] "OPTIONS /validateData HTTP/1.1" 200 -
-172.18.0.5 - - [22/Jul/2025 13:38:16] "[31m[1mPOST /validateData HTTP/1.1[0m" 407 -
-172.18.0.5 - - [22/Jul/2025 13:38:16] "[35m[1mPOST /validateData HTTP/1.1[0m" 207 -
-172.18.0.5 - - [22/Jul/2025 13:38:16] "[35m[1mPOST /validateData HTTP/1.1[0m" 207 -
+ * Debugger PIN: 103-093-289

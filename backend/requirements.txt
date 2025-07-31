@@ -4,7 +4,7 @@ flask-cors
 flask-session
 python-dotenv
 redis
-wheel 
+wheel
 mysql-connector-python
 flask-mysqldb 
 discord

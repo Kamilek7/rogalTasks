@@ -10,6 +10,6 @@ export default defineConfig({
 			methods: ['GET', 'POST'],
 			allowedHeaders: ['Content-Type']
 		},
-		allowedHosts: ['rogalrogalrogalrogal.omline', 'tasks.rogalrogalrogalrogal.online'] //added this
+		allowedHosts: ['rogalrogalrogalrogal.online', 'tasks.rogalrogalrogalrogal.online'] //added this
 	}
 })
