@@ -71,7 +71,7 @@ function Login({error, onLogin}) {
 
   return <>
   
-    <div><button onClick={()=>{mode=="login"? setMode("register"):setMode("login")}}>{mode=="login"?"Zarejestruj się":"Zaloguj się"}</button><div id='headInfo'>{mode=="login"?"Zaloguj się do usługi:":"Zarejestruj się:"}</div>
+    <div><button onClick={()=>{mode=="login"? setMode("register"):setMode("login")}}>{mode=="login"?"Zarejestruj":"Zaloguj"}</button><div id='headInfo'>{mode=="login"?"Zaloguj się do usługi:":"Zarejestruj się:"}</div>
     <form onSubmit={(e) => {mode=="login"? onLogin({login:loginRef.current?.value, haslo:passRef.current?.value, e:e}):register(e)}}>
         <div id='formDiv'>
             

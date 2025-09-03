@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import ZadaniaLista from "./zadania.jsx"
 import ZadForm from "./noweZadania.jsx"
 import Harmonogram from "./harmonogram.jsx"
-import Kalendarz from "./kalendarz.jsx"
 import UserConfig from "./user.jsx"
 import { CookiesProvider, useCookies } from 'react-cookie'
 import './App.css'
@@ -116,10 +115,9 @@ function Page({user, setCookie}) {
   
     <div id='buttonsLayout'>
       <button onClick={ () => {otworzOkno(0)}}><i class="icon-plus"></i></button>
-      <button onClick={ () => {otworzOkno(1)}}><i class="icon-calendar-plus-o"></i></button>
-      <button onClick={ () => {otworzOkno(2)}}><i class="icon-calendar"></i></button>
-      <button onClick={ () => {otworzOkno(3)}}><i class="icon-address-book-o"></i></button>
-      <button onClick={ () => {logout()}}><i class="icon-logout"></i></button>
+      <button class='optional' onClick={ () => {otworzOkno(1)}}><i class="icon-calendar-plus-o"></i></button>
+      <button class='optional' onClick={ () => {otworzOkno(3)}}><i class="icon-address-book-o"></i></button>
+      <button  onClick={ () => {logout()}}><i class="icon-logout"></i></button>
     </div>
     
     <div className="modal-hidden">
@@ -127,7 +125,6 @@ function Page({user, setCookie}) {
         <span className="close" onClick = {zamknijOkno}>&times;</span>
         {trybGlobal==0 &&<ZadForm zadania={zadania} zamknijOkno = {() => {zamknijOkno(0)}} blad={bladOkna} callback={update} userID={user}/>}
         {trybGlobal==1 &&<Harmonogram harmonogram={harmonogram} zamknijOkno = {() => {zamknijOkno(1)}} blad={bladOkna} callback={update} userID={user}/>}
-        {trybGlobal==2 &&<Kalendarz zamknijOkno = {() => {zamknijOkno(2)}} blad={bladOkna} callback={update} data = {setDate}/>}
         {trybGlobal==3 &&<UserConfig dane={userData} zamknijOkno = {() => {zamknijOkno(3)}} blad={bladOkna} userID={user} callback={update} logout={logout}/>}
       </div>
 

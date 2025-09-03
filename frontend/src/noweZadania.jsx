@@ -2,12 +2,15 @@ import {useState} from "react"
 
 const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
     const currentTime = new Date();
+    currentTime.setDate(currentTime.getDate()+1)
+    
 
     const [nazwa, setName] = useState("")
     const [rodzic, setParent] = useState("0")
-    const [data, setDate] = useState(`${new Date().getFullYear()}-${`${new Date().getMonth()+1}`.padStart(2, 0)}-${`${new Date().getDate() + 1}`.padStart(2, 0)}T12:00`)
+    const [data, setDate] = useState(`${currentTime.getFullYear()}-${`${currentTime.getMonth()+1}`.padStart(2, 0)}-${`${currentTime.getDate()}`.padStart(2, 0)}T12:00`)
     const [waga, setWeight] = useState("10")
 
+    
     const onSubmit = async(e) => {
         e.preventDefault()
         const dane = {

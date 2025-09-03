@@ -36,7 +36,7 @@ function App() {
   }
   return <>
   
-    <div id='logoContainer'><img src='..\assets\rogal.png'></img></div>
+    <div id='logoContainer'><img draggable={false} src='..\assets\rogal.png'></img></div>
 
 
       {cookies.loginID ? <Page user={cookies.loginID} setCookie={setCookie} /> : <Login error={errorState} onLogin={handleLogin} />}

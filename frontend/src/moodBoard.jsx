@@ -1,6 +1,6 @@
 import {useState} from "react"
 
-const Kalendarz = ({zamknijOkno, blad, callback, data}) =>
+const moodBoard = ({zamknijOkno, blad, callback, data}) =>
 {
 
     const cellClicked = (date) =>{
@@ -66,4 +66,4 @@ const Kalendarz = ({zamknijOkno, blad, callback, data}) =>
             </div>
     </form>
 }
-export default Kalendarz
+export default moodBoard
