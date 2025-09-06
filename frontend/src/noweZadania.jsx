@@ -8,13 +8,12 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
     const [nazwa, setName] = useState("")
     const [rodzic, setParent] = useState("0")
     const [data, setDate] = useState(`${currentTime.getFullYear()}-${`${currentTime.getMonth()+1}`.padStart(2, 0)}-${`${currentTime.getDate()}`.padStart(2, 0)}T12:00`)
-    const [waga, setWeight] = useState("10")
 
     
     const onSubmit = async(e) => {
         e.preventDefault()
         const dane = {
-            nazwa, rodzic, data, waga, userID
+            nazwa, rodzic, data, userID
         }
         const url = "https://tasks-backend.rogalrogalrogalrogal.online/noweZadanie/" + userID;
         const options = {
@@ -49,8 +48,6 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
             </select>
             <label htmlFor="formData">Data</label>
             <input type="datetime-local" id="formData" defaultValue={data} onChange={(e) => setDate(String(e.target.value))}/>
-            <label htmlFor="formWaga">Waga</label>
-            <input type="number" id="formWaga" value={waga} onChange={(e) => setWeight(e.target.value)}/>
             <button type='submit' >Dodaj zadanie</button>
     </form>
 }

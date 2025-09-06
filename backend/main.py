@@ -27,7 +27,7 @@ def get_tasks(ID,DATE):
     cursor = mysql.connection.cursor()
 
     # Skomplikowany kod SQL ktory pobiera zadania, przypisuje im dzieci i oblicza sredni stopien wykonania dla grupy
-    cursor.execute(f"SELECT parents.*, JSON_ARRAYAGG(JSON_OBJECT('ID', children.ID)) AS children, ratio.r AS ratio FROM (SELECT * FROM zadania WHERE status!=100) AS parents LEFT JOIN (SELECT * FROM zadania WHERE status!=100) AS children ON parents.ID=children.parentID LEFT JOIN (SELECT parentID,  SUM(status*waga)/(SUM(waga)) AS r FROM zadania GROUP BY parentID HAVING parentID!=0) AS ratio ON ratio.parentID=parents.ID  WHERE parents.uzytkownik={ID} GROUP BY ID {where}ORDER BY data ASC;")
+    cursor.execute(f"SELECT parents.*, JSON_ARRAYAGG(JSON_OBJECT('ID', children.ID)) AS children, ratio.r AS ratio FROM (SELECT * FROM zadania WHERE status!=100) AS parents LEFT JOIN (SELECT * FROM zadania WHERE status!=100) AS children ON parents.ID=children.parentID LEFT JOIN (SELECT parentID,  SUM(status)/(COUNT(status)) AS r FROM zadania GROUP BY parentID HAVING parentID!=0) AS ratio ON ratio.parentID=parents.ID  WHERE parents.uzytkownik={ID} GROUP BY ID {where}ORDER BY data ASC;")
 
     temp = cursor.fetchall()
     cursor.close()
@@ -38,11 +38,10 @@ def addTask(USER):
     nazwa = request.json.get("nazwa")
     data = request.json.get("data")
     rodzic = request.json.get("rodzic")
-    waga = request.json.get("waga")
 
-    if nazwa and data and rodzic and waga:
+    if nazwa and data and rodzic:
         cursor = mysql.connection.cursor()
-        cursor.execute(f"INSERT INTO zadania (status, uzytkownik, nazwa, data, parentID, waga) VALUES (0, {USER}, '{nazwa}', '{data}', {rodzic}, {waga})")
+        cursor.execute(f"INSERT INTO zadania (status, uzytkownik, nazwa, data, parentID) VALUES (0, {USER}, '{nazwa}', '{data}', {rodzic})")
         mysql.connection.commit()
         cursor.close()
         return jsonify({"message":"Udalo sie dodac zadanie!"}), 201
@@ -80,10 +79,9 @@ def wyslijHarmo(ID):
 def noweHarmo(IDuser):
     nazwa = request.json.get("nazwa")
     dni = request.json.get("dniD")
-    waga = request.json.get("waga")
-    if IDuser and nazwa and dni and waga:
+    if IDuser and nazwa and dni:
         cursor = mysql.connection.cursor()
-        cursor.execute(f"INSERT INTO harmonogram (nazwa, dni, waga, uzytkownik) VALUES ('{nazwa}', '{dni}', {waga}, {IDuser})")
+        cursor.execute(f"INSERT INTO harmonogram (nazwa, dni, uzytkownik) VALUES ('{nazwa}', '{dni}',{IDuser})")
         mysql.connection.commit()
         cursor.close()
         return jsonify({"message" :"Udalo sie dodać nowy plan do harmonogramu!"}),204
@@ -94,10 +92,9 @@ def noweHarmo(IDuser):
 def edytujHarmo(ID):
     nazwa = request.json.get("nazwa")
     dni = request.json.get("dniD")
-    waga = request.json.get("waga")
     if ID:
         cursor = mysql.connection.cursor()
-        cursor.execute(f"UPDATE harmonogram SET nazwa='{nazwa}', dni='{dni}', waga={waga} WHERE ID={ID}")
+        cursor.execute(f"UPDATE harmonogram SET nazwa='{nazwa}', dni='{dni}' WHERE ID={ID}")
         mysql.connection.commit()
         cursor.close()
         return jsonify({"message":"Udalo sie wykonac zadanie!"}), 205

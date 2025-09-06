@@ -6,13 +6,12 @@ import {useState} from "react"
 const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
 
     const [nazwa, setName] = useState("")
-    const [waga, setPriority] = useState("")
     const [currentH, setCurrent] = useState("new")
     const [currentHID, setCurrentID] = useState("new")
     const [weekDayObject, setWeekDay] = useState([])
     
 
-    harmonogram["new"] = {nazwa: "Nazwa",dni:[], waga:"10"};
+    harmonogram["new"] = {nazwa: "Nazwa",dni:[]};
 
     const removeH = async (ID) =>
     {
@@ -76,7 +75,7 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
         else
             dniD = ";"
         var dane = {
-            nazwa, dniD, waga
+            nazwa, dniD
         }
         var status = 0;
         if (currentHID=="new")
@@ -94,8 +93,6 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
         }
         else
         {
-            if (waga=="")
-                dane.waga = harmonogram[currentH].waga
             if (nazwa=="")
                 dane.nazwa = harmonogram[currentH].nazwa
             const url = "https://tasks-backend.rogalrogalrogalrogal.online/harmonogramEdit/" + currentHID
@@ -130,7 +127,6 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
                 ))}
             </select>
             <input id='nazwa' type='text' onChange={(e) => setName(e.target.value)} placeholder={harmonogram[currentH].nazwa}></input>
-            <input id='waga' type='number' onChange={(e) => setPriority(e.target.value)} placeholder={harmonogram[currentH].waga}></input>
             {harmonogram[currentH].nazwa!='Nazwa'&&<button onClick={(e) => {e.preventDefault(); removeH(harmonogram[currentH].ID)}}>Usuń wybraną aktywność</button>}
             <div class='harmContainer'>
                 <table>

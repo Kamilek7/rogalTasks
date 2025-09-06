@@ -60,6 +60,8 @@ const ZadaniaLista = ({zadania, callback}) => {
     const wysunZadania = (id) =>
     {
         
+        let parentParent = document.querySelector(`div[data-id='${id}']`);
+
         let parent = document.querySelector(`div[data-id='child${id}']`);        
         var children = parent.children;
         if (children[0].className == "taskRowChild")
@@ -75,9 +77,11 @@ const ZadaniaLista = ({zadania, callback}) => {
             setTimeout( ()=> {
                 parent.style.display="none";
             },600);
+            parentParent.children[1].children[0].style.transform ="rotate(180deg)"
         }
         else
         {
+            parentParent.children[1].children[0].style.transform ="rotate(0deg)"
             parent.style.display="block";
             parent.style.overflow="hidden";
             setTimeout( ()=> {
@@ -113,9 +117,9 @@ const ZadaniaLista = ({zadania, callback}) => {
                                 <div class='progress-bar' style={{height:"3px", backgroundColor:"#73603c", width:"90%", margin:"auto", marginTop:"2vh", marginBottom:"1vh"}}><div class='progress' style={{height:"100%", position:"relative", top:"0", left:"0", backgroundColor:"#ddddb6", width:( zadanie["ratio"] +"%")}}></div></div>
                             </div>
                             <div class='buttons'>
-                                { (JSON.parse(zadanie["children"])[0].ID)!= null &&<div class='taskUnwrap' onClick={() => {wysunZadania(zadanie["ID"])}}> v </div>}
-                                { (JSON.parse(zadanie["children"])[0].ID)== null &&<div class='taskFinished'  onClick={() => {wykonajZadanie(zadanie["ID"])}}> o </div>}
-                                <div class='taskRemoved' onClick={() => {usunZadania(zadanie["ID"])}}> x </div>
+                                { (JSON.parse(zadanie["children"])[0].ID)!= null &&<div class='taskUnwrap' onClick={() => {wysunZadania(zadanie["ID"])}}> <i class='icon-down-open'></i> </div>}
+                                { (JSON.parse(zadanie["children"])[0].ID)== null &&<div class='taskFinished'  onClick={() => {wykonajZadanie(zadanie["ID"])}}> <i class='icon-ok'></i> </div>}
+                                <div class='taskRemoved' onClick={() => {usunZadania(zadanie["ID"])}}> <i class='icon-trash-empty'></i> </div>
                             </div>
                         </div>
                         <div key={"child" + zadanie["ID"]} class="children" data-id={"child" + zadanie["ID"]}>
@@ -129,8 +133,8 @@ const ZadaniaLista = ({zadania, callback}) => {
                                                 <div class='taskContent'>{zadChild["data"]}</div>
                                             </div>
                                             <div class='buttons'>
-                                                <div class='taskFinished'  onClick={() => {wykonajZadanie(zadChild["ID"])}}> o </div>
-                                                <div class='taskRemoved' onClick={() => {usunZadania(zadChild["ID"])}}> x </div>
+                                                <div class='taskFinished'  onClick={() => {wykonajZadanie(zadChild["ID"])}}> <i class='icon-ok'></i> </div>
+                                                <div class='taskRemoved' onClick={() => {usunZadania(zadChild["ID"])}}> <i class='icon-trash-empty'></i> </div>
                                             </div>
                                         </div>
                                         )
