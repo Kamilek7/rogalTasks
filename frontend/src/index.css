@@ -155,6 +155,10 @@ body
 {
   background-color: #4e2727;
 }
+.taskEdit
+{
+  background-color: #634f23;
+}
 
 .taskUnwrap
 {
@@ -181,6 +185,12 @@ body
 {
   cursor:pointer;
   border-color: #ee526c;
+}
+
+.taskEdit:hover
+{
+  cursor:pointer;
+  border-color: #b0bb10;
 }
 
 #error-message-form

@@ -33,7 +33,6 @@ if current.strftime("%H")=='03':
         name = row[1]
         times = row[2].split(",")
         user = row[3]
-        weight = row[4]
 
         unpack = []
         dayName = current.strftime("%A")
@@ -60,7 +59,7 @@ if current.strftime("%H")=='03':
         for hours in new:
             date = f"{current.strftime("%Y-%m-%d")} {hours[:5]}"
             nazwa = f"{name} - {hours}"
-            sql = f"INSERT INTO zadania (status, waga, data, nazwa, parentID, uzytkownik) VALUES (0, {weight}, '{date}', '{nazwa}', 0, {user});"
+            sql = f"INSERT INTO zadania (status, data, nazwa, parentID, uzytkownik) VALUES (0, '{date}', '{nazwa}', 0, {user});"
             mycursor.execute(sql)
         mydb.commit()
 
