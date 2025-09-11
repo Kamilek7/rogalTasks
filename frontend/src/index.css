@@ -625,3 +625,8 @@ label
     display:none !important;
   }
 }
+.nameChangeInput
+{
+  width:fit-content;
+  max-width: 90%;
+}
