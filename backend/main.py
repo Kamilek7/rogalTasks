@@ -183,5 +183,19 @@ def removeUser(ID):
     cursor.close()
     return jsonify({"wynik": "Usunięto uzytkownika!"}),212
 
+@app.route("/updateTaskInfo/<int:ID>", methods=["PATCH"])
+def updateInfoTask(ID):
+    data = request.json.get("data")
+    data = datetime.strptime(data, "%a, %d %b %Y %H:%M:%S %Z")
+    data = data.strftime("%Y-%m-%d %H:%M:%S")
+    nazwa = request.json.get("nazwa")
+    cursor = mysql.connection.cursor()
+    cursor.execute(f"UPDATE zadania SET nazwa='{nazwa}', data='{data}' WHERE ID={ID};")
+    mysql.connection.commit()
+    cursor.close()
+    return jsonify({"wynik": "Zaktualizowano zadanie!"}),213
+
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)

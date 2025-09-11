@@ -1,6 +1,6 @@
 import { useState} from 'react'
 
-const Zadanie = ({zadanie, d, child}) => {
+const Zadanie = ({zadanie, d, child, callback}) => {
 
     const [editMode, setEditMode] = useState(false);
     const [wysuniete, setWysuniete] = useState(false);
@@ -61,11 +61,8 @@ const Zadanie = ({zadanie, d, child}) => {
         
         setWysuniete(!wysuniete);
 
-        let parentParent = document.querySelector(`div[data-id='${id}']`);
         let parent = document.querySelector(`div[data-id='child${id}']`);        
         var children = parent.children;
-
-        console.log(parent);
         if (children[0].className == "taskRowChild")
         {
             
@@ -114,19 +111,26 @@ const Zadanie = ({zadanie, d, child}) => {
 
     const toggleEditMode = (id) => {
 
-        // if (!editMode)
-        // {
-        //     var parent = document.querySelector(`div[keyprop='${id}']`);
-        //     var taskNameDiv = parent.children[0].children[0];
-        //     taskNameDiv.innerHTML = `<input class='nameChangeInput' type='text' value='${taskNameDiv.innerHTML}'></div>`
-        // }
-        // else
-        // {
-        //     var parent = document.querySelector(`div[keyprop='${id}']`);
-        //     var taskNameDiv = parent.children[0].children[0];
-        //     taskNameDiv.innerHTML = `<input class='nameChangeInput' type='text' value='${taskNameDiv.innerHTML}'></div>`
-        // }
+        if (editMode)
+        {
+            updateTaskInfo(id);
+        }
         setEditMode(!editMode)
+    }
+
+    const updateTaskInfo = async (id) => {
+        const dane = {
+            nazwa, data
+        }
+        const url = "https://tasks-backend.rogalrogalrogalrogal.online/updateTaskInfo/" + id;
+        const options = {
+            method: "PATCH",
+            headers:  {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(dane)
+        }
+        const response = await fetch(url, options)
     }
 
         let czas;
@@ -137,17 +141,21 @@ const Zadanie = ({zadanie, d, child}) => {
             czas = new Date(data);
             var children = JSON.parse(zadanie.children);
         }
+        const localDate = new Date(data);
+        var dateFormat = `${localDate.getFullYear()}-${`${localDate.getMonth()+1}`.padStart(2, 0)}-${`${localDate.getDate()}`.padStart(2, 0)}T${`${localDate.getHours()}`.padStart(2, 0)}:${`${localDate.getMinutes()}`.padStart(2, 0)}` 
         return (
             <div class='mainTaskContainer'>
                 <div key={zadanie["ID"]} keyprop={zadanie["ID"]} class={(child)? 'taskRowChild' :'taskRow'} style={(czas.getTime() - d.getTime() <= 0) ? { backgroundColor: "rgb(123, 122, 117)" } : ((d.getYear() == czas.getYear() && d.getMonth() == czas.getMonth() && d.getDate() == czas.getDate()) ? { backgroundColor: "#9f1818" } : {})} data-id={zadanie["ID"]}>
                     <div class='taskContentWrapper'>
-                        {(editMode)? (<div class='taskName'><input onChange={() =>{}} size={nazwa.length} class='nameChangeInput' type='text' value={nazwa}></input></div>) : (<div class='taskName'>{nazwa}</div>)}
-                        
-                        <div class='taskContent'>{data}</div>
+                        {(editMode)? (<div class='taskName'><input onChange={(e) =>{setNazwa(e.target.value)}} size={nazwa.length} class='nameChangeInput' type='text' value={nazwa}></input></div>) : (<div class='taskName'>{nazwa}</div>)}
+                        <div class='taskContent'>{editMode ? <input type='datetime-local' onChange={(e) => {
+                            const date = new Date(e.target.value);
+                            setData(date.toUTCString());
+                        }} value={dateFormat}></input> :data}</div>
                         {(!child)&& (<div class='progress-bar' style={{ height: "3px", backgroundColor: "#73603c", width: "90%", margin: "auto", marginTop: "2vh", marginBottom: "1vh" }}><div class='progress' style={{ height: "100%", position: "relative", top: "0", left: "0", backgroundColor: "#ddddb6", width: (zadanie["ratio"] + "%") }}></div></div>)}
                     </div>
                     <div class='buttons'>
-                        {(!child && JSON.parse(zadanie["children"])[0].ID != null) && <div style={((wysuniete)? {transform: "rotate(0deg)"} :{transform: "rotate(90deg)"})} class='taskUnwrap' onClick={() => { wysunZadania(zadanie["ID"]) }}> <i class='icon-down-open'></i> </div>}
+                        {(!child && JSON.parse(zadanie["children"])[0].ID != null) && <div class='taskUnwrap' onClick={() => { wysunZadania(zadanie["ID"]) }}> <i style={((wysuniete)? {transform: "rotate(0deg)"} :{transform: "rotate(90deg)"})} class='icon-down-open'></i> </div>}
                         {((child || JSON.parse(zadanie["children"])[0].ID == null)&& !editMode) && <div class='taskFinished' onClick={() => { wykonajZadanie(zadanie["ID"]) }}> <i class='icon-ok'></i> </div>}
                         {(editMode) && <div class='taskRemoved' onClick={() => {usunZadania(zadanie["ID"])}}> <i class='icon-trash-empty'></i> </div>}
                         <div class='taskEdit' onClick={() => { toggleEditMode(zadanie['ID']) }}><i class='icon-edit'></i></div>

@@ -15,7 +15,7 @@ const ZadaniaLista = ({zadania, callback}) => {
                 {
                     zadBezRodzica.map((zadanie) => 
                     {
-                        return <Zadanie zadanie={zadanie} d={d} child={false}></Zadanie>
+                        return <Zadanie zadanie={zadanie} d={d} child={false} callback={callback}></Zadanie>
                     }
                 )}
 
