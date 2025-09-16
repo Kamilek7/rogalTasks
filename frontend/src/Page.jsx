@@ -101,15 +101,10 @@ function Page({user, setCookie}) {
       pobierzZadania(date);
       pobierzHarmonogram();
       pobierzUser();
-      console.log("updated")
   }
 
   useEffect(() => {
     update();
-    // const interval = setInterval(() => update(), 10000);
-    // return () => {
-    //   clearInterval(interval);
-    // };
   }, [])
 
   return <>

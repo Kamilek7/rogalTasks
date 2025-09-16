@@ -32,7 +32,6 @@ function UserConfig({dane, zamknijOkno, blad, userID, callback, logout}) {
             what: element.nameSQL,
             value: element.value
         }
-        console.log(danet);
         const options = {
             method: "PATCH",
             headers: {

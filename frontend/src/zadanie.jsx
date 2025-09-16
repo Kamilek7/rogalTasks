@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef} from 'react'
+import { useState} from 'react'
 
 const Zadanie = ({zadanie, d, child, callback}) => {
 
@@ -6,7 +6,6 @@ const Zadanie = ({zadanie, d, child, callback}) => {
     const [wysuniete, setWysuniete] = useState(false);
     const [nazwa, setNazwa] = useState(zadanie['nazwa'])
     const [data, setData] = useState(zadanie['data']);
-    const ref = useRef(null);
     function getAutoHeight(el) {
         const clone = el.cloneNode(true);
         clone.style.height = "auto";
@@ -84,7 +83,6 @@ const Zadanie = ({zadanie, d, child, callback}) => {
             requestAnimationFrame(() => {
                 parent.style.height = getAutoHeight(parent) + "px";
                 });
-            console.log(parent.scrollHeight + "px");
 
         }
         else
@@ -134,6 +132,7 @@ const Zadanie = ({zadanie, d, child, callback}) => {
         {
             czas = new Date(data);
             var children = JSON.parse(zadanie.children);
+            children.sort(function(a,b) {return new Date(a["data"] + " GMT+0200")- new Date(b["data"] + " GMT+0200")})
         }
         const localDate = new Date(data);
         var dateFormat = `${localDate.getFullYear()}-${`${localDate.getMonth()+1}`.padStart(2, 0)}-${`${localDate.getDate()}`.padStart(2, 0)}T${`${localDate.getHours()}`.padStart(2, 0)}:${`${localDate.getMinutes()}`.padStart(2, 0)}` 
@@ -155,7 +154,7 @@ const Zadanie = ({zadanie, d, child, callback}) => {
                         <div class='taskEdit' onClick={() => { toggleEditMode(zadanie['ID']) }}><i class='icon-edit'></i></div>
                     </div>
                 </div>
-                <div ref={ref} key={"child" + zadanie["ID"]} class="children" data-id={"child" + zadanie["ID"]}>
+                <div key={"child" + zadanie["ID"]} class="children" data-id={"child" + zadanie["ID"]}>
                 { 
                     (!child) &&
                         children.map((zadChild) => {

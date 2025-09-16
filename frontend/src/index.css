@@ -221,6 +221,7 @@ body
 
 .children
 {
+  height:0px;
   overflow: hidden;
   margin-bottom:1vw;
   transition:all ease-in-out 0.2s;
