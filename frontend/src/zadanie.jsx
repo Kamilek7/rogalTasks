@@ -1,4 +1,4 @@
-import { useState} from 'react'
+import { useState, useEffect, useRef} from 'react'
 
 const Zadanie = ({zadanie, d, child, callback}) => {
 
@@ -6,8 +6,20 @@ const Zadanie = ({zadanie, d, child, callback}) => {
     const [wysuniete, setWysuniete] = useState(false);
     const [nazwa, setNazwa] = useState(zadanie['nazwa'])
     const [data, setData] = useState(zadanie['data']);
+    const ref = useRef(null);
+    function getAutoHeight(el) {
+        const clone = el.cloneNode(true);
+        clone.style.height = "auto";
+        clone.style.visibility = "hidden";
+        clone.style.position = "absolute";
+        clone.style.transition = "none";
+        el.parentNode.appendChild(clone);
+        const height = clone.scrollHeight;
+        el.parentNode.removeChild(clone);
+        return height;
+    }
+
     const applyCSS = (id) =>
-        
     {   
         let el = document.querySelector(`div[data-id='${id}']`);
         el.style.transition = 'all 0.5s ease-in-out';
@@ -16,10 +28,18 @@ const Zadanie = ({zadanie, d, child, callback}) => {
             el.style.height='0px';
             el.style.padding='0px';
             el.style.margin='0px';
+            if (el.className=="taskRowChild")
+            {
+                checkChildrenHeight(el.parentElement.parentElement, true)
+                el.offsetHeight;
+            }
+
         }, 600)
+
+        
     }
 
-        const usunZadania = async (id) => {
+    const usunZadania = async (id) => {
 
         applyCSS(id);
         const url = "https://tasks-backend.rogalrogalrogalrogal.online/usunZadanie/" + id;
@@ -31,6 +51,7 @@ const Zadanie = ({zadanie, d, child, callback}) => {
         }
         setTimeout(async () => {
             const response = await fetch(url, options)
+            
             callback();
         }, 1000)
 
@@ -52,61 +73,34 @@ const Zadanie = ({zadanie, d, child, callback}) => {
         setTimeout(async () => {
             const response = await fetch(url, options)
             callback();
-            
         }, 1000)
     }
 
-    const wysunZadania = (id) =>
+    const checkChildrenHeight = (parent, flag) =>
     {
-        
-        setWysuniete(!wysuniete);
-
-        let parent = document.querySelector(`div[data-id='child${id}']`);        
-        var children = parent.children;
-        if (children[0].className == "taskRowChild")
+        parent.scrollHeight
+        if (!wysuniete || flag)
         {
-            
+            requestAnimationFrame(() => {
+                parent.style.height = getAutoHeight(parent) + "px";
+                });
+            console.log(parent.scrollHeight + "px");
+
         }
         else
         {
-            
+            requestAnimationFrame(() => {
+                parent.style.height = "0px";
+                });
+
         }
-        // if (children[0].className == "taskRowChild")
-        // {
-        //     for (var i = 0; i< children.length; i++)
-        //     {
-        //         children[i].classList.add("taskRowChild-hidden");
-        //         children[i].classList.remove("taskRowChild");
-        //     }
+    }
 
-        //     parent.classList.add("children-hidden");
-        //     parent.classList.remove("children");
-        //     setTimeout( ()=> {
-        //         parent.style.display="none";
-        //     },600);
-        //     
-        // }
-        // else
-        // {
-        //     
-        //     parent.style.display="block";
-        //     parent.style.overflow="hidden";
-        //     setTimeout( ()=> {
-        //         parent.classList.add("children");
-        //         parent.classList.remove("children-hidden");
-        //     for (var i = 0; i< children.length; i++)
-        //     {
-
-        //         children[i].classList.add("taskRowChild");
-        //         children[i].classList.remove("taskRowChild-hidden");
-        //     }          
-        //     },10);
-        //                 setTimeout( ()=> {
-
-        //         parent.style.overflow="";       
-        //     },400);
-
-        // }
+    const wysunZadania = (id) =>
+    {  
+        let parent = document.querySelector(`div[data-id='child${id}']`);        
+        checkChildrenHeight(parent, false)
+        setWysuniete(!wysuniete);
     }
 
     const toggleEditMode = (id) => {
@@ -145,7 +139,7 @@ const Zadanie = ({zadanie, d, child, callback}) => {
         var dateFormat = `${localDate.getFullYear()}-${`${localDate.getMonth()+1}`.padStart(2, 0)}-${`${localDate.getDate()}`.padStart(2, 0)}T${`${localDate.getHours()}`.padStart(2, 0)}:${`${localDate.getMinutes()}`.padStart(2, 0)}` 
         return (
             <div class='mainTaskContainer'>
-                <div key={zadanie["ID"]} keyprop={zadanie["ID"]} class={(child)? 'taskRowChild' :'taskRow'} style={(czas.getTime() - d.getTime() <= 0) ? { backgroundColor: "rgb(123, 122, 117)" } : ((d.getYear() == czas.getYear() && d.getMonth() == czas.getMonth() && d.getDate() == czas.getDate()) ? { backgroundColor: "#9f1818" } : {})} data-id={zadanie["ID"]}>
+                <div keyprop={zadanie["ID"]} class={(child)? 'taskRowChild' :'taskRow'} style={(czas.getTime() - d.getTime() <= 0) ? { backgroundColor: "rgb(123, 122, 117)" } : ((d.getYear() == czas.getYear() && d.getMonth() == czas.getMonth() && d.getDate() == czas.getDate()) ? { backgroundColor: "#9f1818" } : {})} data-id={zadanie["ID"]}>
                     <div class='taskContentWrapper'>
                         {(editMode)? (<div class='taskName'><input onChange={(e) =>{setNazwa(e.target.value)}} size={nazwa.length} class='nameChangeInput' type='text' value={nazwa}></input></div>) : (<div class='taskName'>{nazwa}</div>)}
                         <div class='taskContent'>{editMode ? <input type='datetime-local' onChange={(e) => {
@@ -157,16 +151,16 @@ const Zadanie = ({zadanie, d, child, callback}) => {
                     <div class='buttons'>
                         {(!child && JSON.parse(zadanie["children"])[0].ID != null) && <div class='taskUnwrap' onClick={() => { wysunZadania(zadanie["ID"]) }}> <i style={((wysuniete)? {transform: "rotate(0deg)"} :{transform: "rotate(90deg)"})} class='icon-down-open'></i> </div>}
                         {((child || JSON.parse(zadanie["children"])[0].ID == null)&& !editMode) && <div class='taskFinished' onClick={() => { wykonajZadanie(zadanie["ID"]) }}> <i class='icon-ok'></i> </div>}
-                        {(editMode) && <div class='taskRemoved' onClick={() => {usunZadania(zadanie["ID"])}}> <i class='icon-trash-empty'></i> </div>}
+                        {(editMode && (child || JSON.parse(zadanie["children"])[0].ID == null)) && <div class='taskRemoved' onClick={() => {usunZadania(zadanie["ID"])}}> <i class='icon-trash-empty'></i> </div>}
                         <div class='taskEdit' onClick={() => { toggleEditMode(zadanie['ID']) }}><i class='icon-edit'></i></div>
                     </div>
                 </div>
-                <div key={"child" + zadanie["ID"]} class="children" data-id={"child" + zadanie["ID"]}>
+                <div ref={ref} key={"child" + zadanie["ID"]} class="children" data-id={"child" + zadanie["ID"]}>
                 { 
-                    (!child && wysuniete) &&
+                    (!child) &&
                         children.map((zadChild) => {
                             if (zadChild['nazwa']!=null)
-                                return <Zadanie zadanie={zadChild} d={d} child={true}></Zadanie>
+                                return <Zadanie key={zadChild["ID"]} zadanie={zadChild} d={d} child={true} callback={callback}></Zadanie>
                             else
                                 return <></>
                         })

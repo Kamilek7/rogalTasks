@@ -8,500 +8,623 @@
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 103-093-289
-172.18.0.15 - - [11/Sep/2025 21:30:44] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:30:44] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:30:44] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:31:06] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:31:06] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 500 -
-Traceback (most recent call last):
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
-    return self.wsgi_app(environ, start_response)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
-    response = self.handle_exception(e)
-               ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/backend/main.py", line 191, in updateInfoTask
-    cursor.execute(f"UPDATE uzytkownicy SET nazwa={nazwa}, data={data} WHERE ID={ID};")
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/cursors.py", line 179, in execute
-    res = self._query(mogrified_query)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/cursors.py", line 330, in _query
-    db.query(q)
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/connections.py", line 280, in query
-    _mysql.connection.query(self, query)
-MySQLdb.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00-18:00, data=Wed, 10 Sep 2025 17:00:00 GMT WHERE ID=322' at line 1")
-172.18.0.15 - - [11/Sep/2025 21:31:11] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:31:11] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:31:11] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:31:40] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:31:40] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 500 -
-Traceback (most recent call last):
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
-    return self.wsgi_app(environ, start_response)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
-    response = self.handle_exception(e)
-               ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/backend/main.py", line 191, in updateInfoTask
-    cursor.execute(f"UPDATE uzytkownicy SET nazwa={nazwa}, data={data} WHERE ID={ID};")
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/cursors.py", line 179, in execute
-    res = self._query(mogrified_query)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/cursors.py", line 330, in _query
-    db.query(q)
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/connections.py", line 280, in query
-    _mysql.connection.query(self, query)
-MySQLdb.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00-18, data=Wed, 10 Sep 2025 17:00:00 GMT WHERE ID=322' at line 1")
-172.18.0.15 - - [11/Sep/2025 21:31:42] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:31:42] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:31:42] "GET /zadania/4/any HTTP/1.1" 200 -
- * Detected change in '/home/rogal/projekty/rogalTasks/backend/main.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 103-093-289
- * Detected change in '/home/rogal/projekty/rogalTasks/backend/main.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 103-093-289
-172.18.0.15 - - [11/Sep/2025 21:34:50] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:34:50] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:34:50] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:35:38] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:35:38] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 500 -
-Traceback (most recent call last):
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
-    return self.wsgi_app(environ, start_response)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
-    response = self.handle_exception(e)
-               ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/backend/main.py", line 192, in updateInfoTask
-    cursor.execute(f"UPDATE uzytkownicy SET nazwa={nazwa}, data={data} WHERE ID={ID};")
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/cursors.py", line 179, in execute
-    res = self._query(mogrified_query)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/cursors.py", line 330, in _query
-    db.query(q)
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/connections.py", line 280, in query
-    _mysql.connection.query(self, query)
-MySQLdb.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00-18:00, data=Wed, 10 Sep 2025 17:00:00 GMT WHERE ID=322' at line 1")
-172.18.0.15 - - [11/Sep/2025 21:35:41] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:35:41] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 500 -
-Traceback (most recent call last):
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
-    return self.wsgi_app(environ, start_response)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
-    response = self.handle_exception(e)
-               ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/backend/main.py", line 192, in updateInfoTask
-    cursor.execute(f"UPDATE uzytkownicy SET nazwa={nazwa}, data={data} WHERE ID={ID};")
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/cursors.py", line 179, in execute
-    res = self._query(mogrified_query)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/cursors.py", line 330, in _query
-    db.query(q)
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/connections.py", line 280, in query
-    _mysql.connection.query(self, query)
-MySQLdb.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00-18:00, data=Wed, 10 Sep 2025 17:00:00 GMT WHERE ID=322' at line 1")
-172.18.0.15 - - [11/Sep/2025 21:39:22] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:39:22] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 500 -
-Traceback (most recent call last):
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
-    return self.wsgi_app(environ, start_response)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
-    response = self.handle_exception(e)
-               ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/backend/main.py", line 192, in updateInfoTask
-    cursor.execute(f"UPDATE uzytkownicy SET nazwa={nazwa}, data={data} WHERE ID={ID};")
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/cursors.py", line 179, in execute
-    res = self._query(mogrified_query)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/cursors.py", line 330, in _query
-    db.query(q)
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/connections.py", line 280, in query
-    _mysql.connection.query(self, query)
-MySQLdb.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00-18:00, data=Wed, 10 Sep 2025 17:00:00 GMT WHERE ID=322' at line 1")
-172.18.0.15 - - [11/Sep/2025 21:40:20] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:40:20] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
-172.18.0.15 - - [11/Sep/2025 21:40:20] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:40:20] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:40:20] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:40:24] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:40:24] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:40:24] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:40:32] "OPTIONS /usunZadanie/325 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:40:32] "[35m[1mDELETE /usunZadanie/325 HTTP/1.1[0m" 202 -
-172.18.0.15 - - [11/Sep/2025 21:41:36] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:41:36] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
-172.18.0.15 - - [11/Sep/2025 21:41:36] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:41:36] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:41:36] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:41:41] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:41:41] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:41:41] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:41:52] "OPTIONS /usunZadanie/326 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:41:52] "[35m[1mDELETE /usunZadanie/326 HTTP/1.1[0m" 202 -
-172.18.0.15 - - [11/Sep/2025 21:41:54] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:41:54] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:41:54] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
- * Detected change in '/home/rogal/projekty/rogalTasks/backend/main.py', reloading
-Wed, 10 Sep 2025 17:00:00 GMT
-Wed, 10 Sep 2025 17:00:00 GMT
-Wed, 10 Sep 2025 17:00:00 GMT
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 103-093-289
- * Detected change in '/home/rogal/projekty/rogalTasks/backend/main.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 103-093-289
-172.18.0.15 - - [11/Sep/2025 21:45:14] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:45:14] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:45:14] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:45:21] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:45:21] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 500 -
-Traceback (most recent call last):
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
-    return self.wsgi_app(environ, start_response)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
-    response = self.handle_exception(e)
-               ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/backend/main.py", line 189, in updateInfoTask
-    data = datetime.datetime.strptime(data, "%a, %d %b %Y %H:%M:%S %Z")
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: type object 'datetime.datetime' has no attribute 'datetime'
-172.18.0.15 - - [11/Sep/2025 21:45:23] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:45:23] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:45:23] "GET /zadania/4/any HTTP/1.1" 200 -
- * Detected change in '/home/rogal/projekty/rogalTasks/backend/main.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 103-093-289
-172.18.0.15 - - [11/Sep/2025 21:46:17] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:46:17] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 500 -
-Traceback (most recent call last):
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
-    return self.wsgi_app(environ, start_response)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
-    response = self.handle_exception(e)
-               ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/backend/main.py", line 193, in updateInfoTask
-    cursor.execute(f"UPDATE uzytkownicy SET nazwa={nazwa}, data={data} WHERE ID={ID};")
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/cursors.py", line 179, in execute
-    res = self._query(mogrified_query)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/cursors.py", line 330, in _query
-    db.query(q)
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/connections.py", line 280, in query
-    _mysql.connection.query(self, query)
-MySQLdb.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00-18, data=2025-09-10 17:00:00 WHERE ID=322' at line 1")
-172.18.0.15 - - [11/Sep/2025 21:46:19] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:46:19] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:46:19] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
- * Detected change in '/home/rogal/projekty/rogalTasks/backend/main.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 103-093-289
-172.18.0.15 - - [11/Sep/2025 21:46:55] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:46:55] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:46:55] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:46:58] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:46:58] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 500 -
-Traceback (most recent call last):
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
-    return self.wsgi_app(environ, start_response)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
-    response = self.handle_exception(e)
-               ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/backend/main.py", line 193, in updateInfoTask
-    cursor.execute(f"UPDATE uzytkownicy SET nazwa='{nazwa}', data='{data}' WHERE ID={ID};")
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/cursors.py", line 179, in execute
-    res = self._query(mogrified_query)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/cursors.py", line 330, in _query
-    db.query(q)
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/MySQLdb/connections.py", line 280, in query
-    _mysql.connection.query(self, query)
-MySQLdb.OperationalError: (1054, "Unknown column 'nazwa' in 'field list'")
-172.18.0.15 - - [11/Sep/2025 21:47:00] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:47:00] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:47:00] "GET /harmonogram/4 HTTP/1.1" 200 -
- * Detected change in '/home/rogal/projekty/rogalTasks/backend/main.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 103-093-289
- * Detected change in '/home/rogal/projekty/rogalTasks/backend/main.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 103-093-289
- * Detected change in '/home/rogal/projekty/rogalTasks/backend/main.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 103-093-289
-172.18.0.15 - - [11/Sep/2025 21:47:23] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:47:23] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:47:23] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:47:26] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:47:26] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 21:47:28] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:47:28] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:47:28] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:47:34] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:47:34] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 21:57:50] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:57:50] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:57:50] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:58:04] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:58:04] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:58:04] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:58:11] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:58:11] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 21:58:12] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 21:58:13] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 21:58:14] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 21:58:50] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:58:50] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 21:58:50] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:58:52] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:58:52] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 21:58:53] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 21:58:55] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 21:58:57] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 21:58:59] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 21:58:59] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 22:00:19] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:00:19] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 22:00:21] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 22:00:21] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:00:21] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:05:47] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:05:47] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 22:05:49] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 22:05:56] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:05:56] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 500 -
-Traceback (most recent call last):
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1536, in __call__
-    return self.wsgi_app(environ, start_response)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1514, in wsgi_app
-    response = self.handle_exception(e)
-               ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/venv/lib/python3.12/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/backend/main.py", line 189, in updateInfoTask
-    data = datetime.strptime(data, "%a, %d %b %Y %H:%M:%S %Z")
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/_strptime.py", line 554, in _strptime_datetime
-    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
-                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/_strptime.py", line 333, in _strptime
-    raise ValueError("time data %r does not match format %r" %
-ValueError: time data '2025-09-11 19:00:00' does not match format '%a, %d %b %Y %H:%M:%S %Z'
- * Detected change in '/home/rogal/projekty/rogalTasks/backend/main.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 103-093-289
-172.18.0.15 - - [11/Sep/2025 22:07:19] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:07:19] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:07:19] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 22:07:24] "OPTIONS /updateTaskInfo/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:07:24] "[35m[1mPATCH /updateTaskInfo/322 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 22:07:36] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:07:36] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 22:07:36] "GET /zadania/4/any HTTP/1.1" 200 -
- * Detected change in '/home/rogal/projekty/rogalTasks/backend/main.py', reloading
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 103-093-289
-172.18.0.15 - - [11/Sep/2025 22:09:58] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:09:58] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 22:09:58] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:10:02] "OPTIONS /wykonajZadanie/322 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:10:02] "[35m[1mPATCH /wykonajZadanie/322 HTTP/1.1[0m" 203 -
-172.18.0.15 - - [11/Sep/2025 22:10:05] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:10:05] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:10:05] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 22:10:10] "OPTIONS /updateTaskInfo/320 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:10:10] "[35m[1mPATCH /updateTaskInfo/320 HTTP/1.1[0m" 213 -
-172.18.0.15 - - [11/Sep/2025 22:10:13] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:10:13] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:10:13] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 22:11:20] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:11:20] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:11:20] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 22:12:58] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:12:58] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
-172.18.0.15 - - [11/Sep/2025 22:12:58] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:12:58] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 22:12:58] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:13:05] "GET /harmonogram/4 HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:13:05] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 22:13:05] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:14:43] "GET /zadania/4/any HTTP/1.1" 200 -
-172.18.0.15 - - [11/Sep/2025 22:14:43] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
-172.18.0.15 - - [11/Sep/2025 22:14:43] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 11:09:18] "OPTIONS /validateData HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 11:09:18] "OPTIONS /validateData HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 11:09:18] "[35m[1mPOST /validateData HTTP/1.1[0m" 207 -
+172.18.0.15 - - [15/Sep/2025 11:09:18] "[31m[1mPOST /validateData HTTP/1.1[0m" 407 -
+172.18.0.15 - - [15/Sep/2025 11:09:19] "[35m[1mPOST /validateData HTTP/1.1[0m" 207 -
+172.18.0.15 - - [15/Sep/2025 11:09:20] "OPTIONS /login HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 11:09:20] "[35m[1mPOST /login HTTP/1.1[0m" 208 -
+172.18.0.15 - - [15/Sep/2025 11:09:21] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [15/Sep/2025 11:09:21] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 11:09:21] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 11:09:21] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 11:09:21] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 11:09:21] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [15/Sep/2025 11:25:48] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [15/Sep/2025 11:25:48] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 11:25:48] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 11:38:47] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 11:38:47] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 11:38:47] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [15/Sep/2025 12:07:00] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [15/Sep/2025 12:07:00] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 12:07:00] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 12:34:56] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 12:34:56] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 12:34:56] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [15/Sep/2025 12:34:58] "OPTIONS /wykonajZadanie/328 HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 12:34:58] "[35m[1mPATCH /wykonajZadanie/328 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [15/Sep/2025 12:34:58] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 12:34:58] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [15/Sep/2025 12:34:58] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 09:20:46] "OPTIONS /validateData HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 09:20:46] "OPTIONS /validateData HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 09:20:46] "[31m[1mPOST /validateData HTTP/1.1[0m" 407 -
+172.18.0.15 - - [16/Sep/2025 09:20:46] "[35m[1mPOST /validateData HTTP/1.1[0m" 207 -
+172.18.0.15 - - [16/Sep/2025 09:20:46] "[35m[1mPOST /validateData HTTP/1.1[0m" 207 -
+172.18.0.15 - - [16/Sep/2025 09:20:47] "OPTIONS /login HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 09:20:47] "[35m[1mPOST /login HTTP/1.1[0m" 208 -
+172.18.0.15 - - [16/Sep/2025 09:20:47] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 09:20:47] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 09:20:47] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 09:20:47] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 09:20:47] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 09:20:47] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 17:20:51] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 17:20:51] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 17:20:51] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 17:21:22] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 17:21:22] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 17:21:22] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:48:11] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:48:11] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:48:11] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:48:54] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:48:54] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 18:48:54] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:48:54] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:48:54] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:48:59] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:48:59] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:48:59] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:49:45] "OPTIONS /wykonajZadanie/335 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:49:45] "[35m[1mPATCH /wykonajZadanie/335 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 18:49:45] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:49:45] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:49:45] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:49:48] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:49:48] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:49:48] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:50:02] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:50:02] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 18:50:02] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:50:02] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:50:02] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:50:06] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:50:06] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:50:06] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:03] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:51:03] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:03] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:10] "OPTIONS /wykonajZadanie/336 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:10] "[35m[1mPATCH /wykonajZadanie/336 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 18:51:10] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:51:10] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:10] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:40] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:51:40] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:40] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:54] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:54] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 18:51:54] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:54] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:54] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:51:56] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:56] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:51:56] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:59] "OPTIONS /wykonajZadanie/337 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:59] "[35m[1mPATCH /wykonajZadanie/337 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 18:51:59] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:51:59] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:51:59] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:53:02] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:53:02] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:53:02] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:53:07] "OPTIONS /wykonajZadanie/334 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:53:08] "[35m[1mPATCH /wykonajZadanie/334 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 18:53:08] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:53:08] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:53:08] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:00] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:54:00] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:00] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:24] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:24] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:24] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:54:34] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:34] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 18:54:34] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:34] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:54:34] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:37] "OPTIONS /wykonajZadanie/338 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:37] "[35m[1mPATCH /wykonajZadanie/338 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 18:54:37] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:37] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:54:37] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:48] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:48] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 18:54:48] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:48] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:54:48] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:55] "OPTIONS /usunZadanie/339 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:55] "[35m[1mDELETE /usunZadanie/339 HTTP/1.1[0m" 202 -
+172.18.0.15 - - [16/Sep/2025 18:54:55] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 18:54:55] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 18:54:55] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:00:10] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 19:00:10] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:00:10] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:01:18] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 19:01:18] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:01:18] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:13:02] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 19:13:02] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:13:02] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:13:35] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:13:35] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 19:13:35] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:14:32] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:14:32] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:14:32] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 19:14:35] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:14:35] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 19:14:35] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:28:40] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 19:28:40] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:28:40] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:30:17] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:30:17] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 19:30:17] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:31:16] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:31:16] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 19:31:16] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:33:47] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 19:33:47] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:33:47] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:34:03] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:34:03] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 19:34:03] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:37:10] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 19:37:10] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:37:10] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:46:35] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:46:35] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:46:36] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 19:47:01] "OPTIONS /wykonajZadanie/332 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:47:01] "[35m[1mPATCH /wykonajZadanie/332 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 19:47:01] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:47:01] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 19:47:01] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:50:55] "OPTIONS /wykonajZadanie/327 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:50:55] "[35m[1mPATCH /wykonajZadanie/327 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 19:51:54] "OPTIONS /updateTaskInfo/285 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:51:54] "[35m[1mPATCH /updateTaskInfo/285 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 19:51:56] "[35m[1mPATCH /updateTaskInfo/285 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 19:52:04] "OPTIONS /updateTaskInfo/333 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:52:04] "[35m[1mPATCH /updateTaskInfo/333 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 19:52:39] "OPTIONS /updateTaskInfo/333 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:52:39] "[35m[1mPATCH /updateTaskInfo/333 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 19:52:46] "OPTIONS /updateTaskInfo/333 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:52:46] "[35m[1mPATCH /updateTaskInfo/333 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 19:52:48] "OPTIONS /updateTaskInfo/198 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:52:48] "[35m[1mPATCH /updateTaskInfo/198 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 19:52:49] "[35m[1mPATCH /updateTaskInfo/198 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 19:56:12] "OPTIONS /wykonajZadanie/287 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 19:56:12] "[35m[1mPATCH /wykonajZadanie/287 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:00:36] "OPTIONS /wykonajZadanie/327 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:00:37] "[35m[1mPATCH /wykonajZadanie/327 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:01:19] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:01:19] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:01:19] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:01:27] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:01:27] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:01:27] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:01:27] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:01:27] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:01:29] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:01:29] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:01:29] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:01:29] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:01:31] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:01:31] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:01:31] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:01:31] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:01:44] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:01:44] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:01:44] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:01:57] "OPTIONS /wykonajZadanie/342 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:01:57] "[35m[1mPATCH /wykonajZadanie/342 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:06:09] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:09] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:06:09] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:14] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:14] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:06:14] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:06:14] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:14] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:17] "OPTIONS /wykonajZadanie/343 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:17] "[35m[1mPATCH /wykonajZadanie/343 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:06:17] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:17] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:17] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:06:39] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:39] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:39] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:06:47] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:47] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:47] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:06:51] "OPTIONS /wykonajZadanie/340 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:51] "[35m[1mPATCH /wykonajZadanie/340 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:06:51] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:51] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:06:51] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:10:17] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:10:17] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:10:17] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:10:22] "OPTIONS /wykonajZadanie/341 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:10:22] "[35m[1mPATCH /wykonajZadanie/341 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:10:22] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:10:22] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:10:22] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:11:19] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:11:19] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:11:20] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:11:20] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:11:20] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:11:26] "OPTIONS /wykonajZadanie/344 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:11:26] "[35m[1mPATCH /wykonajZadanie/344 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:11:26] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:11:26] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:11:26] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:11:50] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:11:50] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:11:50] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:12:05] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:05] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:12:05] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:05] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:05] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:12:07] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:12:07] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:07] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:12:07] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:11] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:11] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:12:11] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:11] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:11] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:12:15] "OPTIONS /wykonajZadanie/346 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:15] "[35m[1mPATCH /wykonajZadanie/346 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:12:15] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:15] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:12:15] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:18] "OPTIONS /wykonajZadanie/345 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:18] "[35m[1mPATCH /wykonajZadanie/345 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:12:18] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:18] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:12:18] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:40] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:40] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:12:40] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:43] "OPTIONS /wykonajZadanie/347 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:44] "[35m[1mPATCH /wykonajZadanie/347 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:12:44] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:44] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:12:44] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:13:43] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:13:43] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:13:43] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:14:41] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:14:41] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:14:41] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:14:48] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:14:48] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:14:48] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:15:49] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:15:49] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:15:49] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:21] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:21] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:16:21] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:33] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:33] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:16:33] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:33] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:33] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:16:34] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:16:34] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:34] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:34] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:16:36] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:16:36] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:36] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:16:36] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:38] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:38] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:16:38] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:38] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:16:38] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:42] "OPTIONS /wykonajZadanie/351 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:42] "[35m[1mPATCH /wykonajZadanie/351 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:16:42] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:16:42] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:16:42] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:18:02] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:18:02] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:18:02] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:18:06] "OPTIONS /wykonajZadanie/350 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:18:06] "[35m[1mPATCH /wykonajZadanie/350 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:18:06] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:18:06] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:18:06] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:19:33] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:19:33] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:19:33] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:19:38] "OPTIONS /wykonajZadanie/349 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:19:38] "[35m[1mPATCH /wykonajZadanie/349 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:19:38] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:19:38] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:19:38] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:07] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:07] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:07] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:20:15] "OPTIONS /wykonajZadanie/348 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:15] "[35m[1mPATCH /wykonajZadanie/348 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:20:15] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:15] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:15] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:20:31] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:31] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:20:31] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:31] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:20:31] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:34] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:20:34] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:34] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:34] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:20:36] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:36] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:20:36] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:36] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:36] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:20:38] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:20:38] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:38] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:38] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:20:41] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:20:41] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:20:41] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:20:41] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:21:49] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:21:49] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:21:49] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:21:56] "OPTIONS /wykonajZadanie/356 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:21:56] "[35m[1mPATCH /wykonajZadanie/356 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:21:56] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:21:56] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:21:56] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:22:01] "OPTIONS /wykonajZadanie/355 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:22:01] "[35m[1mPATCH /wykonajZadanie/355 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:22:01] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:22:01] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:22:01] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:14] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:14] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:14] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:23:18] "OPTIONS /wykonajZadanie/354 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:18] "[35m[1mPATCH /wykonajZadanie/354 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:23:18] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:18] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:23:18] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:24] "OPTIONS /wykonajZadanie/353 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:24] "[35m[1mPATCH /wykonajZadanie/353 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:23:24] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:24] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:24] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:23:26] "OPTIONS /wykonajZadanie/352 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:26] "[35m[1mPATCH /wykonajZadanie/352 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:23:26] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:23:26] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:26] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:48] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:48] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:23:48] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:55] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:55] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:23:55] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:55] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:55] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:23:58] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:23:58] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:58] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:23:58] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:23:59] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:24:00] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:00] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:24:00] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:01] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:01] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:24:01] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:01] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:24:01] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:03] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:24:03] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:03] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:03] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:24:05] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:24:05] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:05] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:24:05] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:07] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:07] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:24:07] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:07] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:24:07] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:12] "OPTIONS /wykonajZadanie/361 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:12] "[35m[1mPATCH /wykonajZadanie/361 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:24:12] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:12] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:24:12] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:26:43] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:26:43] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:26:43] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:27:03] "OPTIONS /wykonajZadanie/362 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:27:03] "[35m[1mPATCH /wykonajZadanie/362 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:27:03] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:27:03] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:27:03] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:32:02] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:32:02] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:32:02] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:34:59] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:34:59] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:34:59] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:35:42] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:35:42] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:35:42] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:35:46] "OPTIONS /wykonajZadanie/363 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:35:47] "[35m[1mPATCH /wykonajZadanie/363 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:35:47] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:35:47] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:35:47] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:39:19] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:39:19] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:39:19] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:39:25] "OPTIONS /wykonajZadanie/360 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:39:25] "[35m[1mPATCH /wykonajZadanie/360 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:39:25] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:39:25] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:39:25] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:40:37] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:40:37] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:40:37] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:40:40] "OPTIONS /wykonajZadanie/359 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:40:40] "[35m[1mPATCH /wykonajZadanie/359 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:40:40] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:40:40] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:40:40] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:40:54] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:40:54] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:40:54] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:40:54] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:40:54] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:40:58] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:40:58] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:40:58] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:40:58] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:41:00] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:41:00] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:41:00] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:41:00] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:41:00] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:41:02] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:41:02] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:41:02] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:41:02] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:41:04] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:41:04] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:41:04] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:44:51] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:44:51] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:44:51] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:44:58] "OPTIONS /wykonajZadanie/358 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:44:58] "[35m[1mPATCH /wykonajZadanie/358 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:44:58] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:44:58] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:44:58] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:45:02] "OPTIONS /wykonajZadanie/367 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:45:02] "[35m[1mPATCH /wykonajZadanie/367 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:45:02] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:45:02] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:45:02] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:45:06] "OPTIONS /wykonajZadanie/366 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:45:06] "[35m[1mPATCH /wykonajZadanie/366 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:45:06] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:45:06] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:45:06] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:45:13] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:45:13] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:45:13] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:45:13] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:45:13] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:45:16] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:45:16] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:45:16] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:45:16] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:46:15] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:46:15] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:46:15] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:46:39] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:46:39] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:46:39] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:46:42] "OPTIONS /wykonajZadanie/368 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:46:42] "[35m[1mPATCH /wykonajZadanie/368 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:46:43] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:46:43] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:46:43] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:47:17] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:47:17] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:47:17] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:47:17] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:47:17] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:47:24] "OPTIONS /wykonajZadanie/370 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:47:24] "[35m[1mPATCH /wykonajZadanie/370 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:47:24] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:47:24] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:47:24] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:48:07] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:48:07] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:48:07] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:48:10] "OPTIONS /wykonajZadanie/333 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:48:10] "[35m[1mPATCH /wykonajZadanie/333 HTTP/1.1[0m" 203 -
+172.18.0.15 - - [16/Sep/2025 20:48:10] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:48:10] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:48:10] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:48:13] "OPTIONS /updateTaskInfo/357 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:48:13] "[35m[1mPATCH /updateTaskInfo/357 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 20:48:54] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:48:54] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:48:54] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:48:57] "OPTIONS /updateTaskInfo/357 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:48:57] "[35m[1mPATCH /updateTaskInfo/357 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 20:49:02] "[35m[1mPATCH /updateTaskInfo/357 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 20:49:06] "OPTIONS /updateTaskInfo/369 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:06] "[35m[1mPATCH /updateTaskInfo/369 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 20:49:11] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:11] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:49:11] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:34] "OPTIONS /usunZadanie/369 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:34] "[35m[1mDELETE /usunZadanie/369 HTTP/1.1[0m" 202 -
+172.18.0.15 - - [16/Sep/2025 20:49:34] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:34] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:34] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:49:35] "OPTIONS /usunZadanie/365 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:35] "[35m[1mDELETE /usunZadanie/365 HTTP/1.1[0m" 202 -
+172.18.0.15 - - [16/Sep/2025 20:49:36] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:36] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:49:36] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:38] "OPTIONS /usunZadanie/364 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:38] "[35m[1mDELETE /usunZadanie/364 HTTP/1.1[0m" 202 -
+172.18.0.15 - - [16/Sep/2025 20:49:38] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:49:38] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:38] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:41] "OPTIONS /updateTaskInfo/357 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:41] "[35m[1mPATCH /updateTaskInfo/357 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 20:49:42] "[35m[1mPATCH /updateTaskInfo/357 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 20:49:47] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:49:47] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:47] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:50] "OPTIONS /updateTaskInfo/357 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:49:50] "[35m[1mPATCH /updateTaskInfo/357 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 20:50:03] "OPTIONS /usunZadanie/357 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:50:03] "[35m[1mDELETE /usunZadanie/357 HTTP/1.1[0m" 202 -
+172.18.0.15 - - [16/Sep/2025 20:50:03] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:50:03] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:50:03] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:50:51] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:50:51] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:50:51] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:51:02] "OPTIONS /updateTaskInfo/198 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:51:02] "[35m[1mPATCH /updateTaskInfo/198 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 20:51:17] "OPTIONS /updateTaskInfo/198 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:51:17] "[35m[1mPATCH /updateTaskInfo/198 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 20:51:18] "OPTIONS /updateTaskInfo/296 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:51:18] "[35m[1mPATCH /updateTaskInfo/296 HTTP/1.1[0m" 213 -
+172.18.0.15 - - [16/Sep/2025 20:51:29] "OPTIONS /noweZadanie/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:51:29] "[35m[1mPOST /noweZadanie/4 HTTP/1.1[0m" 201 -
+172.18.0.15 - - [16/Sep/2025 20:51:29] "GET /harmonogram/4 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:51:29] "[35m[1mGET /userData/4 HTTP/1.1[0m" 209 -
+172.18.0.15 - - [16/Sep/2025 20:51:29] "GET /zadania/4/any HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:51:31] "OPTIONS /updateTaskInfo/371 HTTP/1.1" 200 -
+172.18.0.15 - - [16/Sep/2025 20:51:31] "[35m[1mPATCH /updateTaskInfo/371 HTTP/1.1[0m" 213 -

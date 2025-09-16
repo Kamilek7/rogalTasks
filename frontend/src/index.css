@@ -14,6 +14,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 input, textarea, select {
     background-color: rgb(70, 66, 66);
@@ -111,7 +112,7 @@ body
   position: relative;
   z-index: 5;
   background-color: rgb(206, 131, 33);
-  margin: calc(1.5vh + 1.5vw);
+  margin: calc(1.1vh + 1.1vw);
   border-radius: 10px;
   padding: calc(1vw + 1vh);
   display:flex;
@@ -207,7 +208,7 @@ body
   top:0;
   z-index: 5;
   background-color: rgb(206, 131, 33);
-  margin: calc(1.5vh + 1.5vw);
+  margin: calc(0.8vh + 0.8vw);
   margin-left: calc(4vh + 3vw);
   border-radius: 10px;
   padding: 1vw;
@@ -216,65 +217,15 @@ body
   transform-style: preserve-3d;
   transition: 0.8s all ease-in-out;
 }
-.taskRowChild:before
-{
-  z-index: 0;
-  transform: translateZ(-50px);
-  content: "";
-  background-color: #e2e2e2;
-  position: relative;
-  top: -5vw;
-  width: 1vw;
-  height: 5vw;
-  display: block;
-  border-radius: 1vw;
-  transition: 0.8s all ease-in-out;
-  border-top: solid rgb(176, 153, 93) 5px;
-}
 
-.children-hidden
-{
-    font-size: 0;
-    margin: 0;
-    opacity: 0;
-    padding: 0;
-    transition: opacity .25s, font-size .5s .25s, margin .5s .25s, padding .5s .25s;
-}
 
 .children
 {
-    transition: font-size .25s, margin .25s, padding .25s, opacity .5s .25s;
+  overflow: hidden;
+  margin-bottom:1vw;
+  transition:all ease-in-out 0.2s;
 }
 
-.taskRowChild-hidden
-{
-  position: relative;
-  top:-10vw;
-  z-index: 5;
-  background-color: rgb(206, 131, 33);
-  margin: 5vw 2vw 2vw 5vw;
-  border-radius: 10px;
-  padding: 1vw;
-  display:flex;
-  align-items: center;
-  transition: 0.8s all;
-  transform-style: preserve-3d;
-}
-.taskRowChild-hidden:before
-{
-  z-index: 0;
-  transform: translateZ(-50px);
-  content: "";
-  background-color: #e2e2e2;
-  position: relative;
-  top: -4.5vw;
-  width: 1vw;
-  height: 5vw;
-  display: block;
-  border-radius: 1vw;
-  transition: 0.8s all;
-  border-top: solid rgb(176, 153, 93) 5px;
-}
 .harmoCellActive
 {
   width:2.7vw;

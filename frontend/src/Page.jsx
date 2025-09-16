@@ -101,6 +101,7 @@ function Page({user, setCookie}) {
       pobierzZadania(date);
       pobierzHarmonogram();
       pobierzUser();
+      console.log("updated")
   }
 
   useEffect(() => {
