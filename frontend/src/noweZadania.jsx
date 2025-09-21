@@ -59,7 +59,7 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
                 </div>
 
             </div>
-            <input disabled={!dataNull} type="datetime-local" id="formData" defaultValue={data} onChange={(e) => setDate(String(e.target.value))}/>
+            <input disabled={!dataNull} type="datetime-local" id="formData" defaultValue={data} value={dataNull ? data : ''} onChange={(e) => setDate(String(e.target.value))}/>
             <button type='submit' >Dodaj zadanie</button>
     </form>
 }
