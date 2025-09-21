@@ -36,12 +36,15 @@ def get_tasks(ID,DATE):
 @app.route("/noweZadanie/<int:USER>", methods=["POST"])
 def addTask(USER):
     nazwa = request.json.get("nazwa")
-    data = request.json.get("data")
+    data = request.json.get("dataTemp")
     rodzic = request.json.get("rodzic")
 
     if nazwa and data and rodzic:
         cursor = mysql.connection.cursor()
-        cursor.execute(f"INSERT INTO zadania (status, uzytkownik, nazwa, data, parentID) VALUES (0, {USER}, '{nazwa}', '{data}', {rodzic})")
+        if data!="NULL":
+            cursor.execute(f"INSERT INTO zadania (status, uzytkownik, nazwa, data, parentID) VALUES (0, {USER}, '{nazwa}', '{data}', {rodzic})")
+        else:
+            cursor.execute(f"INSERT INTO zadania (status, uzytkownik, nazwa, data, parentID) VALUES (0, {USER}, '{nazwa}', {data}, {rodzic})")
         mysql.connection.commit()
         cursor.close()
         return jsonify({"message":"Udalo sie dodac zadanie!"}), 201

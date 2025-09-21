@@ -126,11 +126,17 @@ const Zadanie = ({zadanie, d, child, callback}) => {
     }
 
         let czas;
-        if (child)
-            czas = new Date(data+ " GMT+0200");
-        else
+        if (data!=null)
         {
-            czas = new Date(data);
+            if (child)
+                czas = new Date(data+ " GMT+0200");
+            else
+                czas = new Date(data);
+        }
+        else
+            czas = new Date(8.64e15)
+        if (!child)
+        {
             var children = JSON.parse(zadanie.children);
             children.sort(function(a,b) {return new Date(a["data"] + " GMT+0200")- new Date(b["data"] + " GMT+0200")})
         }

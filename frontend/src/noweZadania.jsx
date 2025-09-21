@@ -8,12 +8,17 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
     const [nazwa, setName] = useState("")
     const [rodzic, setParent] = useState("0")
     const [data, setDate] = useState(`${currentTime.getFullYear()}-${`${currentTime.getMonth()+1}`.padStart(2, 0)}-${`${currentTime.getDate()}`.padStart(2, 0)}T12:00`)
-
+    const [dataNull, setNoDate] = useState(true)
     
     const onSubmit = async(e) => {
         e.preventDefault()
+        let dataTemp = data;
+        if (!dataNull)
+        {
+            dataTemp = "NULL";
+        }
         const dane = {
-            nazwa, rodzic, data, userID
+            nazwa, rodzic, dataTemp, userID
         }
         const url = "https://tasks-backend.rogalrogalrogalrogal.online/noweZadanie/" + userID;
         const options = {
@@ -46,8 +51,15 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
                     )
                 )}
             </select>
-            <label htmlFor="formData">Data</label>
-            <input type="datetime-local" id="formData" defaultValue={data} onChange={(e) => setDate(String(e.target.value))}/>
+            
+            <div>
+                <div className="flex items-center w-fit mx-auto px-4">
+                    <label className="block" htmlFor="formData">Data</label>
+                    <input className="ml-4 block" type='checkbox' checked={dataNull} onChange={(e) => {setNoDate(!dataNull)}}></input>
+                </div>
+
+            </div>
+            <input disabled={!dataNull} type="datetime-local" id="formData" defaultValue={data} onChange={(e) => setDate(String(e.target.value))}/>
             <button type='submit' >Dodaj zadanie</button>
     </form>
 }
