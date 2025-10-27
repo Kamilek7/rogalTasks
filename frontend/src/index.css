@@ -586,3 +586,9 @@ i
 {
   transition:all 0.15s ease-in-out;
 }
+
+.inTable
+{
+  width:100% !important;
+  margin:0 !important;
+}

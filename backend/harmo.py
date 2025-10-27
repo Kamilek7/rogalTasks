@@ -78,24 +78,29 @@ for user in userData:
 
         if current.strftime("%H") in lst:
             toSend = []
-            mycursor.execute(f"SELECT nazwa, TIME(data), discord FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik WHERE status!=100 AND DATE(data)='{current.strftime("%Y-%m-%d")} AND uzytkownicy.ID={user[0]}';")
+            mycursor.execute(f"SELECT zadania.nazwa, TIME(zadania.data), discord, prnt.nazwa FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik LEFT JOIN zadania AS prnt ON prnt.ID=zadania.parentID WHERE zadania.status!=100 AND DATE(zadania.data)='{current.strftime("%Y-%m-%d")} AND uzytkownicy.ID={user[0]}';")
             zadData = mycursor.fetchall()
             for zadanie in zadData:
                 # To bedzie zmieniane u kazdego uzytkownika
                 discordID = zadanie[2]
                 if discordID!=0:
-                    msg = f"Pamiętaj o wykonaniu swojego zadania {zadanie[0]} o godzinie {zadanie[1]}!"
+                    parent = ""
+                    if zadanie[3]!=None:
+                        parent = f" o rodzicu {zadanie[3]}"
+                    msg = f"Pamiętaj o wykonaniu swojego zadania {zadanie[0]} o godzinie {zadanie[1]}{parent}!"
                     toSend.append((discordID, msg))
 
             # Nie chcialem sie meczyc z porownywaniem daty w pythonie bo latwiej to zrobic po prostu w SQL
-            mycursor.execute(f"SELECT nazwa, DATE(data), discord FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik WHERE status!=100 AND DATE(data)<'{current.strftime("%Y-%m-%d")}';")
+            mycursor.execute(f"SELECT zadania.nazwa, DATE(zadania.data), discord, prnt.nazwa FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik LEFT JOIN zadania AS prnt ON zadania.parentID=prnt.ID WHERE zadania.status!=100 AND DATE(zadania.data)<'{current.strftime("%Y-%m-%d")}';")
             zadData = mycursor.fetchall()
-
             for zadanie in zadData:
                 # To bedzie zmieniane u kazdego uzytkownika
+                parent = ""
+                if zadanie[3]!=None:
+                    parent = f" o rodzicu {zadanie[3]}"
                 discordID = zadanie[2]
                 if discordID!=0:
-                    msg = f"Pamiętaj o wykonaniu swojego zaległego zadania {zadanie[0]} z dnia {zadanie[1]}!"
+                    msg = f"Pamiętaj o wykonaniu swojego zaległego zadania {zadanie[0]} z dnia {zadanie[1]}{parent}!"
                     toSend.append((discordID, msg))
 
 
