@@ -4,6 +4,7 @@ import Login from './login.jsx'
 import './App.css'
 import './css/fontello.css'
 import { useCookies } from 'react-cookie'
+import rogal from '../assets/rogal.png';
 const backendLink = "https://tasks-backend.rogalrogalrogalrogal.online/"
 function App() {
   const [cookies, setCookie] = useCookies(['loginID']);
@@ -35,10 +36,10 @@ function App() {
   }
   return <>
   
-    <div id='logoContainer'><img draggable={false} src='..\assets\rogal.png'></img></div>
+    <div id='logoContainer'><img draggable={false} src={rogal}></img></div>
 
 
-      {cookies.loginID ? <Page backendLink={backendLink} user={cookies.loginID} setCookie={setCookie} /> : <Login error={errorState} onLogin={handleLogin} />}
+      {cookies.loginID ? <Page backendLink={backendLink} user={cookies.loginID} setCookie={setCookie} /> : <Login backendLink={backendLink} error={errorState} onLogin={handleLogin} />}
 
 
   </>

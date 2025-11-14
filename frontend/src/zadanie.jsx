@@ -183,7 +183,7 @@ const Zadanie = ({backendLink, zadanie, d, child, callback}) => {
                     (!child) &&
                         children.map((zadChild) => {
                             if (zadChild['nazwa']!=null)
-                                return <Zadanie key={zadChild["ID"]} zadanie={zadChild} d={d} child={true} callback={callback}></Zadanie>
+                                return <Zadanie key={zadChild["ID"]} backendLink={backendLink} zadanie={zadChild} d={d} child={true} callback={callback}></Zadanie>
                             else
                                 return null
                         })

@@ -1,3 +1,4 @@
 backend/.env
 backend/output.txt
 venv/
+backend/__pycache__/

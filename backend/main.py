@@ -197,8 +197,3 @@ def updateInfoTask(ID):
     mysql.connection.commit()
     cursor.close()
     return jsonify({"wynik": "Zaktualizowano zadanie!"}),213
-
-
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)

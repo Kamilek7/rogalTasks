@@ -1,9 +1,9 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './App.css'
 import './css/fontello.css'
 
 
-function Login({error, onLogin}) {
+function Login({backendLink, error, onLogin}) {
     const [mode, setMode] = useState("login")
     const loginRef = useRef(null);
     const passRef = useRef(null);
@@ -35,7 +35,7 @@ function Login({error, onLogin}) {
         const dane = {
             login: loginRef.current?.value, haslo: passRef.current?.value
         }
-        const url = "https://tasks-backend.rogalrogalrogalrogal.online/register"
+        const url = `${backendLink}register`
         const options = {
             method: "POST",
             headers:  {
@@ -57,6 +57,9 @@ function Login({error, onLogin}) {
         
     }
     
+    useEffect(()=>{
+        validate();
+    },[])
 
   return <>
   
