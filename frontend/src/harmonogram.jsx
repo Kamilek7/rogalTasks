@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
 
 
 
@@ -9,7 +9,7 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
     const [currentH, setCurrent] = useState("new")
     const [currentHID, setCurrentID] = useState("new")
     const [weekDayObject, setWeekDay] = useState([])
-    
+    const [reset, resetThisSH] = useState(false);
 
     harmonogram["new"] = {nazwa: "Nazwa",dni:[]};
 
@@ -23,16 +23,18 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
             },
         }
         const response = await fetch(url, options);
-        setCurrent("new");
-        setCurrentID("new");
+        setH("new")
+        resetThisSH(!reset)
         zamknijOkno();
         callback();
+
     }
 
     const setH = (e) =>
     {
         if (e!="new")
         {
+            setName("");
             e = parseInt(e)
             setCurrentID(e)
             var elementPos = harmonogram.map((x) => {return x.ID; });
@@ -42,7 +44,8 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
         }
         else
         {
-            setWeekDay([]);
+            setName("");
+            weekDayObject.splice(0,weekDayObject.length)
             setCurrentID(e)
             setCurrent(e)
         }
@@ -51,19 +54,16 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
 
     const updateWeekDay = (value) => {
         var temp = weekDayObject
-        if (document.getElementById(value).className=="harmoCellActive")
+        if (temp.includes(value))
         {
-            document.getElementById(value).classList.add("harmoCellDisabled")
-            document.getElementById(value).classList.remove("harmoCellActive")
             temp.splice(temp.indexOf(value),1)
             
         }
         else{
-            document.getElementById(value).classList.add("harmoCellActive")
-            document.getElementById(value).classList.remove("harmoCellDisabled")
             temp.push(value)
             
         }
+        resetThisSH(!reset);
         setWeekDay(temp)
         
     }
@@ -78,6 +78,7 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
             nazwa, dniD
         }
         var status = 0;
+        
         if (currentHID=="new")
         {
             const url = "https://tasks-backend.rogalrogalrogalrogal.online/harmonogramCreate/" +userID
@@ -90,6 +91,7 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
             }
             const response = await fetch(url, options);
             status = response.status
+
         }
         else
         {
@@ -108,27 +110,34 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
         }
         if (status != 400 && status!=401)
         {
+            setH("new")
             zamknijOkno();
+            resetThisSH(!reset)
             callback();
         }
         else
             blad(1);
     }
+
+    useEffect(()=>{
+
+    },[weekDayObject, reset])
+
     var wks = {"Poniedziałek":"a", "Wtorek":"b", "Środa":"c", "Czwartek":"d", "Piątek":"e"};
     var weeks = Object.keys(wks);
     var hours = Array(13).fill().map((x,i)=>i)
     return <form onSubmit={onSubmit}>
             <h2>Modyfikuj harmonogram</h2>
             <span id="error-message-form"></span>
-            <select id='aktywnosc' onChange={(e) => setH(e.target.value)}>
+            <select id='aktywnosc' onChange={(e) => setH(e.target.value)} value={currentHID} selected="new">
                 <option value='new'>Dodaj nowa aktywnosc</option>
                 {harmonogram.map((h) => (
-                    <option value={h['ID']}>{h['nazwa']}</option>
+                    <option key={h["ID"]} value={h['ID']}>{h['nazwa']}</option>
                 ))}
             </select>
-            <input id='nazwa' type='text' onChange={(e) => setName(e.target.value)} placeholder={harmonogram[currentH].nazwa}></input>
+            <input id='nazwa' type='text' value={nazwa} onChange={(e) => setName(e.target.value)} placeholder={harmonogram[currentH].nazwa}></input>
             {harmonogram[currentH].nazwa!='Nazwa'&&<button onClick={(e) => {e.preventDefault(); removeH(harmonogram[currentH].ID)}}>Usuń wybraną aktywność</button>}
-            <div class='harmContainer'>
+            <div className='harmContainer'>
                 <table>
                     <tbody>
                         <tr><th>Godziny</th>{hours.map((hour)=> 
@@ -137,7 +146,7 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
                         (<tr>
                             <td>{day}</td>
                             {hours.map( (hour) => (<td>
-                                <div id={wks[day]+hour} onClick={()=>{updateWeekDay(wks[day]+hour)}} class={harmonogram[currentH].dni.includes(wks[day]+hour) ? ("harmoCellActive") : "harmoCellDisabled"}>
+                                <div id={wks[day]+hour} onClick={()=>{updateWeekDay(wks[day]+hour)}} className={weekDayObject.includes(wks[day]+hour) ? ("harmoCellActive") : "harmoCellDisabled"}>
                                 </div>
                             </td>))}
                         </tr>))}

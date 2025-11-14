@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import './App.css'
 import './css/fontello.css'
 
@@ -8,23 +8,19 @@ function Login({error, onLogin}) {
     const loginRef = useRef(null);
     const passRef = useRef(null);
 
-    const validate = async() => {
-        const dane = {
-            login: loginRef.current?.value, haslo: passRef.current?.value
-        }
-        const url = "https://tasks-backend.rogalrogalrogalrogal.online/validateData"
-        const options = {
-            method: "POST",
-            headers:  {
-                "Content-Type" : "application/json"
-            },
-            body: JSON.stringify(dane)
-        }
-        const response = await fetch(url, options);
-        if (response.status!=207)
+    const validate = () => {
+
+        let msg = "";
+        if (loginRef.current?.value=='' && passRef.current?.value=='')
+            msg = "Wpisz login i hasło!";
+        else if (loginRef.current?.value=='')
+            msg = "Wpisz login!";
+        else if (passRef.current?.value=='')
+            msg = "Wpisz hasło!"
+
+        if (msg!="")
         {
-            const data = await response.json();
-            document.getElementById("errorCode").innerHTML = data.message;
+            document.getElementById("errorCode").innerHTML = msg;
             document.getElementById("submit").setAttribute("disabled", "");
         }
         else
@@ -60,13 +56,6 @@ function Login({error, onLogin}) {
         }
         
     }
-
-    useEffect(()=>{
-        setTimeout(() =>{
-            validate(loginRef.current?.value, passRef.current?.value)
-        }, 400)
-        
-    })
     
 
   return <>

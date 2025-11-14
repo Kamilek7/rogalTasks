@@ -7,7 +7,7 @@ import './css/fontello.css'
 import { useCookies } from 'react-cookie'
 
 function App() {
-  const [cookies, setCookie, removeCookie] = useCookies(['loginID']);
+  const [cookies, setCookie] = useCookies(['loginID']);
   const [errorState, setError] = useState("");
   const handleLogin = async (data) => {
     data.e.preventDefault()

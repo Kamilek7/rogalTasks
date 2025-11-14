@@ -1,5 +1,3 @@
-import React from "react"
-
 import Zadanie from "./zadanie";
 
 const ZadaniaLista = ({zadania, callback}) => {

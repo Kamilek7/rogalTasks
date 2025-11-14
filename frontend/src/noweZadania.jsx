@@ -43,11 +43,11 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
             <label htmlFor="formNazwa">Nazwa</label>
             <input type="tekst" id="formNazwa" value={nazwa} onChange={(e) => setName(e.target.value)}/>
             <label htmlFor="formRodzic">Rodzic</label>
-            <select id="formRodzic" onChange={(e) => setParent(e.target.value)}>
-                <option value="0" selected>-</option>
+            <select id="formRodzic" onChange={(e) => setParent(e.target.value)} defaultValue={0}>
+                <option value="0">-</option>
                 {zadania.filter((it) => it["parentID"]==0).map((zadanie) => 
                     (
-                        <option value={zadanie['ID']}>{zadanie["nazwa"]}</option>
+                        <option key={zadanie['ID']} value={zadanie['ID']}>{zadanie["nazwa"]}</option>
                     )
                 )}
             </select>

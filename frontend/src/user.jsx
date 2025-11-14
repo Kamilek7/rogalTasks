@@ -1,8 +1,8 @@
-import { useState, useEffect} from 'react'
+import { useState} from 'react'
 import './App.css'
 import './css/fontello.css'
 
-function UserConfig({dane, zamknijOkno, blad, userID, callback, logout}) {
+function UserConfig({dane, zamknijOkno, userID, callback, logout}) {
 
     const [login, setLogin] = useState(dane[0]["login"]);
     const [pass, setPass] = useState("");
@@ -76,7 +76,7 @@ function UserConfig({dane, zamknijOkno, blad, userID, callback, logout}) {
             <h2 style={{marginBottom:"-0.4vw"}}>Zmień dane:</h2>
             <span style={{color:"red", height:"3vh", textAlign:"center"}} id='error-message-form'></span>
             {traits.map(element => {
-                return (<div class='formRow' style={{margin:"1.4vw auto", display:"flex", width:"fit-content", marginRight: "37%", marginLeft:"auto"}}>
+                return (<div className='formRow' style={{margin:"1.4vw auto", display:"flex", width:"fit-content", marginRight: "37%", marginLeft:"auto"}}>
                     <label >{element.name}</label>
                     <input {...element.extra} type={element.type} value={element.value} onChange={(e) => {element.change(e.target.value)}}></input>
                     <input id='submit' onClick={()=>update(element)} style={{marginLeft: "1.4vw"}} type='submit' value='Zmień'></input>
@@ -87,8 +87,9 @@ function UserConfig({dane, zamknijOkno, blad, userID, callback, logout}) {
             <button onClick={()=>{setMode("historia")}}>Pokaż historię zadań</button></div>):
             (
                 <div><div style={{fontSize:"2vw", fontWeight:"bold", marginBottom:"1.1vw"}}>Historia zadań</div>
+                <span style={{color:"red", height:"3vh", textAlign:"center"}} id='error-message-form'></span>
                 <div style={{marginBottom: "1vw"}}><input value={searchText} onChange={(e) => {setSearch(e.target.value)}} type='search' placeholder='Nakarm psa'></input></div>
-                <table class='history' ><tr><th><button onClick={() => {sortType(0)}} class='inTable'>Nazwa</button></th><th><button class='inTable' onClick={() => {sortType(1)}}>Data</button></th><th><button class='inTable' onClick={() => {sortType(2)}}>Status</button></th></tr>
+                <table className='history' ><tbody><tr><th><button onClick={() => {sortType(0)}} className='inTable'>Nazwa</button></th><th><button className='inTable' onClick={() => {sortType(1)}}>Data</button></th><th><button className='inTable' onClick={() => {sortType(2)}}>Status</button></th></tr>
                 {
                     dane.filter(e => e["nazwa"].toLowerCase().includes(searchText.toLowerCase())).sort(sorter).map(zadania => {
                         return (
@@ -96,6 +97,7 @@ function UserConfig({dane, zamknijOkno, blad, userID, callback, logout}) {
                         )
                     })
                 }
+                </tbody>
                 </table>
             <button onClick={()=>{setMode("dane")}}>Pokaż dane</button></div>)
             }

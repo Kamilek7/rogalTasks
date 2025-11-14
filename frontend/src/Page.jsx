@@ -3,7 +3,6 @@ import ZadaniaLista from "./zadania.jsx"
 import ZadForm from "./noweZadania.jsx"
 import Harmonogram from "./harmonogram.jsx"
 import UserConfig from "./user.jsx"
-import { CookiesProvider, useCookies } from 'react-cookie'
 import './App.css'
 import './css/fontello.css'
 
@@ -110,10 +109,10 @@ function Page({user, setCookie}) {
   return <>
   
     <div id='buttonsLayout'>
-      <button onClick={ () => {otworzOkno(0)}}><i class="icon-plus"></i></button>
-      <button class='optional' onClick={ () => {otworzOkno(1)}}><i class="icon-calendar-plus-o"></i></button>
-      <button class='optional' onClick={ () => {otworzOkno(3)}}><i class="icon-address-book-o"></i></button>
-      <button  onClick={ () => {logout()}}><i class="icon-logout"></i></button>
+      <button onClick={ () => {otworzOkno(0)}}><i className="icon-plus"></i></button>
+      <button className='optional' onClick={ () => {otworzOkno(1)}}><i className="icon-calendar-plus-o"></i></button>
+      <button className='optional' onClick={ () => {otworzOkno(3)}}><i className="icon-address-book-o"></i></button>
+      <button  onClick={ () => {logout()}}><i className="icon-logout"></i></button>
     </div>
     
     <div className="modal-hidden">

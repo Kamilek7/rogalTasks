@@ -75,10 +75,9 @@ for user in userData:
                 lst.append(f"{temp}")
             else:
                 lst.append(f"0{temp}")
-
         if current.strftime("%H") in lst:
             toSend = []
-            mycursor.execute(f"SELECT zadania.nazwa, TIME(zadania.data), discord, prnt.nazwa FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik LEFT JOIN zadania AS prnt ON prnt.ID=zadania.parentID WHERE zadania.status!=100 AND DATE(zadania.data)='{current.strftime("%Y-%m-%d")} AND uzytkownicy.ID={user[0]}';")
+            mycursor.execute(f"SELECT zadania.nazwa, TIME(zadania.data), discord, prnt.nazwa, uzytkownicy.ID FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik LEFT JOIN zadania AS prnt ON prnt.ID=zadania.parentID WHERE zadania.status!=100 AND DATE(zadania.data)='{current.strftime("%Y-%m-%d")}' AND uzytkownicy.ID={user[0]};")
             zadData = mycursor.fetchall()
             for zadanie in zadData:
                 # To bedzie zmieniane u kazdego uzytkownika
@@ -91,7 +90,7 @@ for user in userData:
                     toSend.append((discordID, msg))
 
             # Nie chcialem sie meczyc z porownywaniem daty w pythonie bo latwiej to zrobic po prostu w SQL
-            mycursor.execute(f"SELECT zadania.nazwa, DATE(zadania.data), discord, prnt.nazwa FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik LEFT JOIN zadania AS prnt ON zadania.parentID=prnt.ID WHERE zadania.status!=100 AND DATE(zadania.data)<'{current.strftime("%Y-%m-%d")}';")
+            mycursor.execute(f"SELECT zadania.nazwa, DATE(zadania.data), discord, prnt.nazwa FROM zadania JOIN uzytkownicy ON uzytkownicy.ID=zadania.uzytkownik LEFT JOIN zadania AS prnt ON zadania.parentID=prnt.ID WHERE zadania.status!=100 AND DATE(zadania.data)<'{current.strftime("%Y-%m-%d")}' AND uzytkownicy.ID={user[0]};")
             zadData = mycursor.fetchall()
             for zadanie in zadData:
                 # To bedzie zmieniane u kazdego uzytkownika
