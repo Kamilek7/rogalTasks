@@ -3,7 +3,7 @@ import {useState, useEffect} from "react"
 
 
 
-const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
+const Harmonogram = ({backendLink, harmonogram, zamknijOkno, blad, callback, userID}) => {
 
     const [nazwa, setName] = useState("")
     const [currentH, setCurrent] = useState("new")
@@ -15,7 +15,7 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
 
     const removeH = async (ID) =>
     {
-        const url = "https://tasks-backend.rogalrogalrogalrogal.online/harmoRemove/" +ID;
+        const url = `${backendLink}harmoRemove/${ID}`;
         const options = {
             method: "DELETE",
             headers: {
@@ -81,7 +81,7 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
         
         if (currentHID=="new")
         {
-            const url = "https://tasks-backend.rogalrogalrogalrogal.online/harmonogramCreate/" +userID
+            const url = `${backendLink}harmonogramCreate/${userID}`
             const options = {
                 method: "POST",
                 headers:  {
@@ -97,7 +97,7 @@ const Harmonogram = ({harmonogram, zamknijOkno, blad, callback, userID}) => {
         {
             if (nazwa=="")
                 dane.nazwa = harmonogram[currentH].nazwa
-            const url = "https://tasks-backend.rogalrogalrogalrogal.online/harmonogramEdit/" + currentHID
+            const url = `${backendLink}harmonogramEdit/${currentHID}`
             const options = {
                 method: "PATCH",
                 headers:  {

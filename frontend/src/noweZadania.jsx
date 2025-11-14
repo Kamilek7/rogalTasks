@@ -1,6 +1,6 @@
 import {useState} from "react"
 
-const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
+const ZadForm = ({backendLink, zadania, zamknijOkno, blad, callback, userID}) => {
     const currentTime = new Date();
     currentTime.setDate(currentTime.getDate()+1)
     
@@ -20,7 +20,7 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
         const dane = {
             nazwa, rodzic, dataTemp, userID
         }
-        const url = "https://tasks-backend.rogalrogalrogalrogal.online/noweZadanie/" + userID;
+        const url = `${backendLink}noweZadanie/${userID}`;
         const options = {
             method: "POST",
             headers:  {
@@ -59,7 +59,7 @@ const ZadForm = ({zadania, zamknijOkno, blad, callback, userID}) => {
                 </div>
 
             </div>
-            <input disabled={!dataNull} type="datetime-local" id="formData" defaultValue={data} value={dataNull ? data : ''} onChange={(e) => setDate(String(e.target.value))}/>
+            <input disabled={!dataNull} type="datetime-local" id="formData" value={dataNull ? data : ''} onChange={(e) => setDate(String(e.target.value))}/>
             <button type='submit' >Dodaj zadanie</button>
     </form>
 }

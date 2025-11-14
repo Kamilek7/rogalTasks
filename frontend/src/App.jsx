@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react'
-
+import { useState} from 'react'
 import Page from './Page.jsx'
 import Login from './login.jsx'
 import './App.css'
 import './css/fontello.css'
 import { useCookies } from 'react-cookie'
-
+const backendLink = "https://tasks-backend.rogalrogalrogalrogal.online/"
 function App() {
   const [cookies, setCookie] = useCookies(['loginID']);
   const [errorState, setError] = useState("");
@@ -14,7 +13,7 @@ function App() {
     const dane = {
       login: data.login, haslo: data.haslo
     }
-    const url = "https://tasks-backend.rogalrogalrogalrogal.online/login"
+    const url = `${backendLink}login`
     const options = {
       method: "POST",
       headers:  {
@@ -39,7 +38,7 @@ function App() {
     <div id='logoContainer'><img draggable={false} src='..\assets\rogal.png'></img></div>
 
 
-      {cookies.loginID ? <Page user={cookies.loginID} setCookie={setCookie} /> : <Login error={errorState} onLogin={handleLogin} />}
+      {cookies.loginID ? <Page backendLink={backendLink} user={cookies.loginID} setCookie={setCookie} /> : <Login error={errorState} onLogin={handleLogin} />}
 
 
   </>

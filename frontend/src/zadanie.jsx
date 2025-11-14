@@ -1,6 +1,6 @@
 import { useState, useEffect} from 'react'
 
-const Zadanie = ({zadanie, d, child, callback}) => {
+const Zadanie = ({backendLink, zadanie, d, child, callback}) => {
 
     const [editMode, setEditMode] = useState(false);
     const [wysuniete, setWysuniete] = useState(false);
@@ -41,7 +41,7 @@ const Zadanie = ({zadanie, d, child, callback}) => {
     const usunZadania = async (id) => {
 
         applyCSS(id);
-        const url = "https://tasks-backend.rogalrogalrogalrogal.online/usunZadanie/" + id;
+        const url = `${backendLink}usunZadanie/${id}`;
         const options = {
             method: "DELETE",
             headers: {
@@ -62,7 +62,7 @@ const Zadanie = ({zadanie, d, child, callback}) => {
     const wykonajZadanie = async (id) => {
 
         applyCSS(id);
-        const url = "https://tasks-backend.rogalrogalrogalrogal.online/wykonajZadanie/" + id;
+        const url = `${backendLink}wykonajZadanie/${id}`;
         const options = {
             method: "PATCH",
             headers: {
@@ -114,7 +114,7 @@ const Zadanie = ({zadanie, d, child, callback}) => {
         const dane = {
             nazwa, data
         }
-        const url = "https://tasks-backend.rogalrogalrogalrogal.online/updateTaskInfo/" + id;
+        const url = `${backendLink}updateTaskInfo/${id}`;
         const options = {
             method: "PATCH",
             headers:  {

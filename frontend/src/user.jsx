@@ -2,7 +2,7 @@ import { useState} from 'react'
 import './App.css'
 import './css/fontello.css'
 
-function UserConfig({dane, zamknijOkno, userID, callback, logout}) {
+function UserConfig({backendLink, dane, zamknijOkno, userID, callback, logout}) {
 
     const [login, setLogin] = useState(dane[0]["login"]);
     const [pass, setPass] = useState("");
@@ -39,7 +39,7 @@ function UserConfig({dane, zamknijOkno, userID, callback, logout}) {
     }
     const removeAcc = async () =>
     {
-        const url = "https://tasks-backend.rogalrogalrogalrogal.online/userRemove/" +userID;
+        const url = `${backendLink}userRemove/${userID}`;
         const options = {
             method: "DELETE",
             headers: {
@@ -53,7 +53,7 @@ function UserConfig({dane, zamknijOkno, userID, callback, logout}) {
 
     const update = async (element) =>
     {
-        const url = "https://tasks-backend.rogalrogalrogalrogal.online/userChange/" +userID;
+        const url = `${backendLink}userChange/${userID}`;
         const danet = {
             what: element.nameSQL,
             value: element.value

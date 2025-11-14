@@ -7,7 +7,7 @@ import './App.css'
 import './css/fontello.css'
 
 
-function Page({user, setCookie}) {
+function Page({backendLink, user, setCookie}) {
   const [zadania, pobierz] = useState([]);
   const [userData, userSet] = useState([]);
   const [harmonogram, harmoSet] = useState("")
@@ -16,26 +16,21 @@ function Page({user, setCookie}) {
   const [specificDate, setSpecificDate] = useState("any")
 
 
-
-  const setDate = (date) => {
-    setSpecificDate(date);
-  }
-
   const pobierzUser = async () => {
-    const response = await fetch(`https://tasks-backend.rogalrogalrogalrogal.online/userData/${user}`);
+    const response = await fetch(`${backendLink}userData/${user}`);
     const data = await response.json();
     userSet(data.dane);
 
   }
 
   const pobierzZadania = async (date) =>   {
-    const response = await fetch(`https://tasks-backend.rogalrogalrogalrogal.online/zadania/${user}/${date}`);
+    const response = await fetch(`${backendLink}zadania/${user}/${date}`);
     const data = await response.json();
     pobierz(data.zadania);
   }
 
     const pobierzHarmonogram = async () =>   {
-        const response = await fetch("https://tasks-backend.rogalrogalrogalrogal.online/harmonogram/" + user);
+        const response = await fetch(`${backendLink}harmonogram/${user}`);
         const data = await response.json();
         var newData = data.harmonogram;
         for (var i=0; i<data.harmonogram.length;i++)
@@ -118,14 +113,14 @@ function Page({user, setCookie}) {
     <div className="modal-hidden">
       <div className="modal-content">
         <span className="close" onClick = {zamknijOkno}>&times;</span>
-        {trybGlobal==0 &&<ZadForm zadania={zadania} zamknijOkno = {() => {zamknijOkno(0)}} blad={bladOkna} callback={update} userID={user}/>}
-        {trybGlobal==1 &&<Harmonogram harmonogram={harmonogram} zamknijOkno = {() => {zamknijOkno(1)}} blad={bladOkna} callback={update} userID={user}/>}
-        {trybGlobal==3 &&<UserConfig dane={userData} zamknijOkno = {() => {zamknijOkno(3)}} blad={bladOkna} userID={user} callback={update} logout={logout}/>}
+        {trybGlobal==0 &&<ZadForm backendLink={backendLink} zadania={zadania} zamknijOkno = {() => {zamknijOkno(0)}} blad={bladOkna} callback={update} userID={user}/>}
+        {trybGlobal==1 &&<Harmonogram backendLink={backendLink} harmonogram={harmonogram} zamknijOkno = {() => {zamknijOkno(1)}} blad={bladOkna} callback={update} userID={user}/>}
+        {trybGlobal==3 &&<UserConfig backendLink={backendLink} dane={userData} zamknijOkno = {() => {zamknijOkno(3)}} blad={bladOkna} userID={user} callback={update} logout={logout}/>}
       </div>
 
     </div>
     {specificDate!="any" &&<div><div style={{margin:"auto", textAlign:'center', marginTop: "5vh", fontSize: "3vh"}}>Zadania dla {specificDate}</div><button onClick={() => {update("any")}} style={{marginTop:"1vh"}}>Resetuj</button></div>}
-    <ZadaniaLista zadania={zadania} callback={update} />
+    <ZadaniaLista backendLink={backendLink} zadania={zadania} callback={update} />
   </>
 }
 
