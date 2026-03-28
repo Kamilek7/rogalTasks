@@ -99,6 +99,10 @@ function Page({backendLink, user, setCookie}) {
 
   useEffect(() => {
     update();
+    const interval = setInterval(() => {
+      update()(t => t + 1); 
+    }, 5 * 60 * 1000);
+    return () => clearInterval(interval);
   }, [])
 
   return <>

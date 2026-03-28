@@ -1,4 +1,4 @@
-[2025-11-14 15:31:24 +0100] [1448] [INFO] Starting gunicorn 23.0.0
-[2025-11-14 15:31:24 +0100] [1448] [INFO] Listening at: http://192.168.1.101:5000 (1448)
-[2025-11-14 15:31:24 +0100] [1448] [INFO] Using worker: sync
-[2025-11-14 15:31:24 +0100] [1591] [INFO] Booting worker with pid: 1591
+[2026-03-23 22:40:59 +0100] [1340] [INFO] Starting gunicorn 23.0.0
+[2026-03-23 22:40:59 +0100] [1340] [INFO] Listening at: http://192.168.1.101:5000 (1340)
+[2026-03-23 22:40:59 +0100] [1340] [INFO] Using worker: sync
+[2026-03-23 22:40:59 +0100] [1474] [INFO] Booting worker with pid: 1474
