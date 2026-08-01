@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import ZadaniaLista from "./zadania.jsx"
+import ZadaniaLista from "./zadania/zadania.jsx"
 import ZadForm from "./noweZadania.jsx"
 import Harmonogram from "./harmonogram/harmonogram.jsx"
 import UserConfig from "./user.jsx"
