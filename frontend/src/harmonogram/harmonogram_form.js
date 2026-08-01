@@ -11,7 +11,6 @@ export function useHarmonogramForm(backendLink, harmonogram, zamknijOkno, blad, 
     const [dayState, dispatchDay] = useReducer(dayStateReducer, initialDayState)
     const intervalModeMap = [{ nazwa: "Dni", type: "daily", val: "0" }, { nazwa: "Tygodnie", type: "weekly", val: "1" }];
     const [reset, resetThisSH] = useState(false);
-
     const [dniTygodnia, setDniTygodnia] = useState([new Dzien({ nazwa: "Poniedziałek" }), new Dzien({ nazwa: "Wtorek" }), new Dzien({ nazwa: "Środa" }), new Dzien({ nazwa: "Czwartek" }), new Dzien({ nazwa: "Piątek" }), new Dzien({ nazwa: "Sobota" }), new Dzien({ nazwa: "Niedziela" })]);
 
     const defaultHarmo = { nazwa: "Nazwa", dni: [] };
@@ -44,6 +43,7 @@ export function useHarmonogramForm(backendLink, harmonogram, zamknijOkno, blad, 
             }
         })
     }
+    
     const parseToWeek = (dni) => {
         dispatchDay({
             type: "INTERVALS",
@@ -57,12 +57,14 @@ export function useHarmonogramForm(backendLink, harmonogram, zamknijOkno, blad, 
         })
 
     }
+
     const resetDays = () => {
         dniTygodnia.forEach(day => {
             updateDni(day.id, { hour: "12:00", check: false })
         })
         dispatchDay({ type: "RESET" })
     }
+
     const setH = (e) => {
         if (e != "new") {
             e = parseInt(e)

@@ -16,6 +16,7 @@ async function sendRequest(id, backendLink, callback, method, endpoint, body = n
 }
 
 
+// To nie jest do konca hook, ale może w przyszlosci cos sie doda
 export function useRequestActions(id, backendLink, callback, applyCSS) {
     const removeTask = async () => {
         applyCSS();

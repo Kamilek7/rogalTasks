@@ -2,7 +2,7 @@ import {useState, useEffect} from "react"
 import Scheduler from '../scheduler.jsx'
 import { removeHarmonogram, createHarmonogram, editHarmonogram } from './harmonogram_service.js'
 import { parseDniDay, parseDniWeek } from "./harmonogram_mapper.js"
-import { useHarmonogramForm } from "./useHarmonogramForm.js"
+import { useHarmonogramForm } from "./harmonogram_form.js"
 import HarmonogramWeek from "./harmonogramWeeks.jsx"
 import HarmonogramDay from "./harmonogramDays.jsx"
 

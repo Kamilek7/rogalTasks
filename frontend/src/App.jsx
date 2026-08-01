@@ -1,5 +1,5 @@
 import { useState} from 'react'
-import Page from './Page.jsx'
+import Page from './page/page.jsx'
 import Login from './login.jsx'
 import './App.css'
 import './css/fontello.css'
@@ -50,11 +50,7 @@ function App() {
   return <>
   
     <div id='logoContainer' onClick={goFullScreen}><img draggable={false} src={rogal}></img></div>
-
-
       {cookies.loginID ? <Page backendLink={backendLink} user={cookies.loginID} setCookie={setCookie} /> : <Login backendLink={backendLink} error={errorState} onLogin={handleLogin} />}
-
-
   </>
 }
 
