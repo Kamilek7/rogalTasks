@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useWindow } from './page_window.js'
 import ZadaniaLista from "../zadania/zadania.jsx"
-import ZadForm from "../noweZadania.jsx"
+import ZadForm from "../zadania/noweZadania.jsx"
 import Harmonogram from "../harmonogram/harmonogram.jsx"
 import UserConfig from "../user/user.jsx"
 import { useFetchedData } from './page_data.js'
+import PageButton from './pageButton.jsx'
 
 function Page({ backendLink, user, setCookie }) {
 
@@ -25,11 +26,11 @@ function Page({ backendLink, user, setCookie }) {
 
     return <>
 
-        <div id='buttonsLayout'>
-            <button onClick={() => { otworzOkno(0) }}><i className="icon-plus"></i></button>
-            <button className='optional' onClick={() => { otworzOkno(1) }}><i className="icon-calendar-plus-o"></i></button>
-            <button className='optional' onClick={() => { otworzOkno(3) }}><i className="icon-address-book-o"></i></button>
-            <button onClick={() => { logout() }}><i className="icon-logout"></i></button>
+        <div id='buttonsLayout' className='flex justify-center items-center'>
+            <PageButton clickFunc={() => {otworzOkno(0)}} icon={"icon-plus"}></PageButton>
+            <PageButton clickFunc={() => {otworzOkno(1)}} icon={"icon-calendar-plus-o"} optional={true}></PageButton>
+            <PageButton clickFunc={() => {otworzOkno(3)}} icon={"icon-address-book-o"} optional={true}></PageButton>
+            <PageButton clickFunc={() => {logout()}} icon={"icon-logout"}></PageButton>
         </div>
 
         <div className="modal-hidden">

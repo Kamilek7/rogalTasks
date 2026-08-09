@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react'
 import { useRequestActions } from './zadania_service';
 import { getAutoHeight, useCSSAnimation } from './zadania_css';
 import { getDateFormatted, getLocalDate } from './zadania_time';
+import TaskButton from './buttons/taskButton';
+
 const Zadanie = ({ backendLink, zadanie, d, child, callback }) => {
-    
+
     const [editMode, setEditMode] = useState(false);
     const [wysuniete, setWysuniete] = useState(false);
     const [nazwa, setNazwa] = useState(zadanie['nazwa'])
@@ -37,8 +39,8 @@ const Zadanie = ({ backendLink, zadanie, d, child, callback }) => {
         <div className='mainTaskContainer'>
             <div keyprop={zadanie["ID"]} className={(child) ? 'taskRowChild' : 'taskRow'} style={(czas.getTime() - d.getTime() <= 0) ? { backgroundColor: "rgb(123, 122, 117)" } : ((d.getYear() == czas.getYear() && d.getMonth() == czas.getMonth() && d.getDate() == czas.getDate()) ? { backgroundColor: "#9f1818" } : {})} data-id={zadanie["ID"]}>
                 <div className='taskContentWrapper'>
-                    {(editMode) ? (<div className='taskName'><input onChange={(e) => { setNazwa(e.target.value) }} size={nazwa.length} className='nameChangeInput' type='text' value={nazwa}></input></div>) : (<div className='taskName'>{nazwa}</div>)}
-                    <div className='taskContent'>
+                    {(editMode) ? (<div className='text-[calc(1.0vw+2vh)] ml-[3vw] font-bold'><input onChange={(e) => { setNazwa(e.target.value) }} size={nazwa.length} className='nameChangeInput' type='text' value={nazwa}></input></div>) : (<div className='text-[calc(1.0vw+2vh)] ml-[3vw] font-bold'>{nazwa}</div>)}
+                    <div className='ml-[5vw] text-[calc(0.4vw+1.4vh)]'>
                         {editMode ? <input type='datetime-local' onChange={(e) => {
                             const date = new Date(e.target.value);
                             setData(date.toUTCString());
@@ -47,13 +49,13 @@ const Zadanie = ({ backendLink, zadanie, d, child, callback }) => {
                     {(!child) && (<div className='progress-bar' style={{ height: "3px", backgroundColor: "#73603c", width: "90%", margin: "auto", marginTop: "2vh", marginBottom: "1vh" }}><div className='progress' style={{ height: "100%", position: "relative", top: "0", left: "0", backgroundColor: "#ddddb6", width: (zadanie["ratio"] + "%") }}></div></div>)}
                 </div>
                 <div className='buttons'>
-                    {(!child && JSON.parse(zadanie["children"])[0].ID != null) && <div className='taskUnwrap' onClick={() => { wysunZadania(zadanie["ID"]) }}> <i style={((wysuniete) ? { transform: "rotate(0deg)" } : { transform: "rotate(90deg)" })} className='icon-down-open'></i> </div>}
-                    {((child || JSON.parse(zadanie["children"])[0].ID == null) && !editMode) && <div className='taskFinished' onClick={() => { completeTask() }}> <i className='icon-ok'></i> </div>}
-                    {(editMode && (child || JSON.parse(zadanie["children"])[0].ID == null)) && <div className='taskRemoved' onClick={() => { removeTask() }}> <i className='icon-trash-empty'></i> </div>}
-                    <div className='taskEdit' onClick={() => { toggleEditMode() }}><i className='icon-edit'></i></div>
+                    {(!child && JSON.parse(zadanie["children"])[0].ID != null) && <TaskButton type='unwrap' fun={()=>{wysunZadania(zadanie["ID"])}} icon='icon-down-open' style={((wysuniete) ? { transform: "rotate(0deg)" } : { transform: "rotate(90deg)" })} ></TaskButton>}
+                    {((child || JSON.parse(zadanie["children"])[0].ID == null) && !editMode) && <TaskButton type="finished" fun={()=>{completeTask()}} icon='icon-ok' ></TaskButton>}
+                    {(editMode && (child || JSON.parse(zadanie["children"])[0].ID == null)) && <TaskButton type="removed" fun={()=>{removeTask()}} icon='icon-trash-empty'></TaskButton>}
+                    <TaskButton type='edit' fun={() => {toggleEditMode()}} icon='icon-edit'></TaskButton>
                 </div>
             </div>
-            <div key={"child" + zadanie["ID"]} className="children" data-id={"child" + zadanie["ID"]}>
+            <div key={"child" + zadanie["ID"]} className="h-[0px] mb-[1vw] overflow-hidden transition-all" data-id={"child" + zadanie["ID"]}>
                 {
                     (!child) &&
                     children.map((zadChild) => {

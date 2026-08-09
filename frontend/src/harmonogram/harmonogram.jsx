@@ -5,6 +5,8 @@ import { parseDniDay, parseDniWeek } from "./harmonogram_mapper.js"
 import { useHarmonogramForm } from "./harmonogram_form.js"
 import HarmonogramWeek from "./harmonogramWeeks.jsx"
 import HarmonogramDay from "./harmonogramDays.jsx"
+import ErrorBar from "../utils/errorBar.jsx"
+import HeaderText from "../utils/headerText.jsx"
 
 const Harmonogram = ({backendLink, harmonogram, zamknijOkno, blad, callback, userID}) => {
 
@@ -14,7 +16,7 @@ const Harmonogram = ({backendLink, harmonogram, zamknijOkno, blad, callback, use
     },[form.reset])
 
     return <form onSubmit={form.onSubmit}>
-            <div style={{fontSize:"2vw", fontWeight:"bold", marginBottom:"1.1vw"}}>Harmonogram</div>
+            <HeaderText>Harmonogram</HeaderText>
              <select id='aktywnosc' onChange={(e) => form.setH(e.target.value)} value={form.infoState.currentHID} selected="new">
                  <option value='new'>Dodaj nowa aktywnosc</option>
                {harmonogram.map((h) => (
@@ -22,7 +24,7 @@ const Harmonogram = ({backendLink, harmonogram, zamknijOkno, blad, callback, use
                  ))}
              </select>
 
-            <span id="error-message-form"></span>
+            <ErrorBar></ErrorBar>
              <input id='nazwa' type='text' value={form.infoState.nazwa} onChange={(e) => form.dispatchInfo({type: "NAME_CHANGE",payload: e.target.value})} placeholder={form.selectedH.nazwa}></input>
             <h2>Odstęp czasu</h2>
             <select id='intervalMode' onChange={(e) => form.dispatchDay({type:"INTERVAL_MODE", payload:parseInt(e.target.value)})} value={form.dayState.intervalMode} selected='0'>

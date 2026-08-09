@@ -1,25 +1,9 @@
-[2026-07-20 09:11:45 +0200] [2437944] [INFO] Starting gunicorn 25.3.0
-[2026-07-20 09:11:45 +0200] [2437944] [INFO] Listening at: http://192.168.1.101:5000 (2437944)
-[2026-07-20 09:11:45 +0200] [2437944] [INFO] Using worker: sync
-[2026-07-20 09:11:45 +0200] [2437954] [INFO] Booting worker with pid: 2437954
-[2026-07-20 09:11:46 +0200] [2437944] [INFO] Control socket listening at /run/user/1000/gunicorn.ctl
-[2026-07-26 10:12:10,845] ERROR in app: Exception on /updateTaskInfo/201 [PATCH]
-Traceback (most recent call last):
-  File "/home/rogal/projekty/rogalTasks/backend/venv/lib/python3.13/site-packages/flask/app.py", line 1511, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/rogal/projekty/rogalTasks/backend/venv/lib/python3.13/site-packages/flask/app.py", line 919, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/rogal/projekty/rogalTasks/backend/venv/lib/python3.13/site-packages/flask_cors/extension.py", line 176, in wrapped_function
-    return cors_after_request(app.make_response(f(*args, **kwargs)))
-                                                ~^^^^^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/backend/venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/rogal/projekty/rogalTasks/backend/venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
-  File "/home/rogal/projekty/rogalTasks/backend/main.py", line 265, in updateInfoTask
-    data = datetime.strptime(data, "%a, %d %b %Y %H:%M:%S %Z")
-TypeError: strptime() argument 1 must be str, not None
-[2026-08-01 12:55:48 +0200] [2437954] [INFO] Parent changed, shutting down: <Worker 2437954>
-[2026-08-01 12:55:48 +0200] [2437954] [INFO] Worker exiting (pid: 2437954)
-['type', 'interval', 'time', 'date']
+[2026-08-01 21:26:51 +0200] [69991] [INFO] Starting gunicorn 25.3.0
+[2026-08-01 21:26:51 +0200] [69991] [INFO] Listening at: http://192.168.1.101:5000 (69991)
+[2026-08-01 21:26:51 +0200] [69991] [INFO] Using worker: sync
+[2026-08-01 21:26:51 +0200] [70024] [INFO] Booting worker with pid: 70024
+[2026-08-01 21:26:51 +0200] [69991] [INFO] Control socket listening at /run/user/1000/gunicorn.ctl
+[2026-08-08 13:58:34 +0200] [70024] [INFO] Parent changed, shutting down: <Worker 70024>
+[2026-08-08 13:58:34 +0200] [70024] [INFO] Worker exiting (pid: 70024)
+['type', 'interval', 'days']
+['type', 'interval', 'days']

@@ -1,4 +1,4 @@
-async function sendRequest(id, backendLink, callback, method, endpoint, body = null)
+export async function sendRequest(id, backendLink, callback, method, endpoint, body = null)
 {
     const url = `${backendLink}${endpoint}/${id}`;
     const options = {
@@ -13,6 +13,7 @@ async function sendRequest(id, backendLink, callback, method, endpoint, body = n
         setTimeout(async () => {
             callback();
         }, 1000)
+    return response;
 }
 
 

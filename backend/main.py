@@ -52,7 +52,7 @@ def addTask(USER):
     nazwa = request.json.get("nazwa")
     data = request.json.get("dataTemp")
     rodzic = request.json.get("rodzic")
-
+    print(nazwa, data, rodzic)
     if nazwa and data and rodzic:
         cursor = mysql.connection.cursor()
         if data != "NULL":
