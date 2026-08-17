@@ -4,14 +4,14 @@ import { getAutoHeight, useCSSAnimation } from './zadania_css';
 import { getDateFormatted, getLocalDate } from './zadania_time';
 import TaskButton from './buttons/taskButton';
 
-const Zadanie = ({ backendLink, zadanie, d, child, callback }) => {
+const Zadanie = ({ zadanie, d, child, callback }) => {
 
     const [editMode, setEditMode] = useState(false);
     const [wysuniete, setWysuniete] = useState(false);
     const [nazwa, setNazwa] = useState(zadanie['nazwa'])
     const [data, setData] = useState(zadanie['data']);
     const { checkChildrenHeight, applyCSS, updateDiv } = useCSSAnimation(wysuniete, child, zadanie["ID"])
-    const { removeTask, completeTask, updateTaskInfo } = useRequestActions(zadanie["ID"], backendLink, callback, applyCSS)
+    const { removeTask, completeTask, updateTaskInfo } = useRequestActions(zadanie["ID"], callback, applyCSS)
 
     const wysunZadania = () => {
         let parent = document.querySelector(`div[data-id='child${zadanie["ID"]}']`);
@@ -60,7 +60,7 @@ const Zadanie = ({ backendLink, zadanie, d, child, callback }) => {
                     (!child) &&
                     children.map((zadChild) => {
                         if (zadChild['nazwa'] != null)
-                            return <Zadanie key={zadChild["ID"]} backendLink={backendLink} zadanie={zadChild} d={d} child={true} callback={callback}></Zadanie>
+                            return <Zadanie key={zadChild["ID"]} zadanie={zadChild} d={d} child={true} callback={callback}></Zadanie>
                         else
                             return null
                     })

@@ -5,10 +5,10 @@ import Button from '../utils/button.jsx'
 import HeaderText from '../utils/headerText.jsx';
 import ErrorBar from '../utils/errorBar.jsx';
 import FancyLabel from '../utils/fancyLabel.jsx';
-function UserViewData({backendLink, dane, zamknijOkno, userID, callback, logout}) {
+function UserViewData({dane, zamknijOkno, callback}) {
 
     const traits = useUserData(dane).traits
-    const {removeAcc, update} = userManager(userID, backendLink, zamknijOkno, logout, callback)
+    const {removeAcc, update} = userManager(zamknijOkno, callback)
     return <>
             <HeaderText>Panel uzytkownika</HeaderText>
             <h2 style={{marginBottom:"-0.4vw"}}>Zmień dane:</h2>

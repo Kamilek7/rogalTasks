@@ -1,11 +1,13 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useContext } from 'react'
 import { sendRequest } from './login_service';
+import { AppContext } from '../utils/AppContext.jsx'
 
-export function LoginData(backendLink, setCookie) {
+export function LoginData() {
     const loginRef = useRef(null);
     const passRef = useRef(null);
     const [errorState, setError] = useState("");
-
+    const backendLink = useContext(AppContext).backendLink;
+    const loginF = useContext(AppContext).login;
     const login = async (e) => {
         e.preventDefault()
         const dane = {
@@ -16,7 +18,7 @@ export function LoginData(backendLink, setCookie) {
         const loginData = await response.json();
         if (response.status == 208) {
             setError("");
-            setCookie('loginID', loginData.dane);
+            loginF(loginData.dane)
         }
         else setError(loginData.message);
     }

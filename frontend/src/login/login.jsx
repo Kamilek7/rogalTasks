@@ -4,9 +4,9 @@ import Button from '../utils/button.jsx'
 import ErrorBar from '../utils/errorBar.jsx';
 import FancyLabel from '../utils/fancyLabel.jsx';
 
-function Login({backendLink, setCookie}) {
+function Login() {
     const [mode, setMode] = useState("login")
-    const {loginRef, passRef, errorState, login, validate, register} = LoginData(backendLink, setCookie)
+    const {loginRef, passRef, errorState, login, validate, register} = LoginData()
 
     useEffect(() => {
         validate();

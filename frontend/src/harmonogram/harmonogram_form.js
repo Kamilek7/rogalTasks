@@ -1,18 +1,19 @@
-import { useState, useEffect, useReducer } from "react"
+import { useState, useEffect, useReducer, useContext } from "react"
 import { removeHarmonogram, createHarmonogram, editHarmonogram, prepareDataToSubmit } from './harmonogram_service.js'
 import { Dzien, findIDOfE } from "./harmonogram_helpers.js"
 import { infoStateReducer, initialInfoState } from "./harmonogram_infoState.js"
 import { dayStateReducer, initialDayState } from "./harmonogram_dayState.js"
+import { AppContext } from '../utils/AppContext.jsx'
 
+export function useHarmonogramForm(harmonogram, zamknijOkno, blad, callback) {
 
-export function useHarmonogramForm(backendLink, harmonogram, zamknijOkno, blad, callback, userID) {
-
+    const backendLink = useContext(AppContext).backendLink;
+    const userID = useContext(AppContext).userID;
     const [infoState, dispatchInfo] = useReducer(infoStateReducer, initialInfoState)
     const [dayState, dispatchDay] = useReducer(dayStateReducer, initialDayState)
     const intervalModeMap = [{ nazwa: "Dni", type: "daily", val: "0" }, { nazwa: "Tygodnie", type: "weekly", val: "1" }];
     const [reset, resetThisSH] = useState(false);
     const [dniTygodnia, setDniTygodnia] = useState([new Dzien({ nazwa: "Poniedziałek" }), new Dzien({ nazwa: "Wtorek" }), new Dzien({ nazwa: "Środa" }), new Dzien({ nazwa: "Czwartek" }), new Dzien({ nazwa: "Piątek" }), new Dzien({ nazwa: "Sobota" }), new Dzien({ nazwa: "Niedziela" })]);
-
     const defaultHarmo = { nazwa: "Nazwa", dni: [] };
     const updateDni = (id, changes) => {
         setDniTygodnia(prev =>

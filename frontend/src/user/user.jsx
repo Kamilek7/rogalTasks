@@ -4,7 +4,7 @@ import Button from '../utils/button.jsx'
 import UserViewData from './user_viewData.jsx';
 import UserViewTasks from './user_viewTasksData.jsx';
 
-function UserConfig({ backendLink, dane, zamknijOkno, userID, callback, logout }) {
+function UserConfig({ dane, zamknijOkno, callback, logout }) {
 
     const [mode, setMode] = useState(true);
 
@@ -14,7 +14,7 @@ function UserConfig({ backendLink, dane, zamknijOkno, userID, callback, logout }
         <form onSubmit={(e) => { e.preventDefault(); }}>
 
             {mode ? (<div>
-                <UserViewData backendLink={backendLink} dane={dane} zamknijOkno={zamknijOkno} userID={userID} callback={callback} logout={logout}></UserViewData>
+                <UserViewData dane={dane} zamknijOkno={zamknijOkno} callback={callback}></UserViewData>
                 <Button clickFunc={() => { setMode(false) }}>Pokaż historie zadań</Button>
             </div>) :
                 (

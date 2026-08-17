@@ -3,9 +3,9 @@ import { onNewTaskInfo } from "./zadania_newData"
 import ErrorBar from "../utils/errorBar"
 import HeaderText from "../utils/headerText"
 
-const ZadForm = ({ backendLink, zadania, zamknijOkno, blad, callback, userID }) => {
+const ZadForm = ({ zadania, zamknijOkno, blad, callback, }) => {
 
-    const formData = onNewTaskInfo(userID, backendLink, blad, zamknijOkno, callback)
+    const formData = onNewTaskInfo(blad, zamknijOkno, callback)
 
     return <form onSubmit={formData.onSubmit}>
         <HeaderText>Dodaj nowe zadanie</HeaderText>

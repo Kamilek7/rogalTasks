@@ -8,9 +8,9 @@ import HarmonogramDay from "./harmonogramDays.jsx"
 import ErrorBar from "../utils/errorBar.jsx"
 import HeaderText from "../utils/headerText.jsx"
 
-const Harmonogram = ({backendLink, harmonogram, zamknijOkno, blad, callback, userID}) => {
+const Harmonogram = ({harmonogram, zamknijOkno, blad, callback}) => {
 
-    const form = useHarmonogramForm(backendLink, harmonogram, zamknijOkno, blad, callback, userID)
+    const form = useHarmonogramForm(harmonogram, zamknijOkno, blad, callback)
     useEffect(()=>{
 
     },[form.reset])

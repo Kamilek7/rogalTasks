@@ -7,14 +7,10 @@ import UserConfig from "../user/user.jsx"
 import { useFetchedData } from './page_data.js'
 import PageButton from './pageButton.jsx'
 
-function Page({ backendLink, user, setCookie }) {
+function Page() {
 
     const { bladOkna, zamknijOkno, otworzOkno, trybGlobal } = useWindow()
-    const { update, zadania, userData, harmonogram, specificDate } = useFetchedData(backendLink, user)
-    
-    const logout = () => {
-        setCookie("loginID", "")
-    }
+    const { update, zadania, userData, harmonogram, specificDate } = useFetchedData()
 
     useEffect(() => {
         update();
@@ -36,14 +32,14 @@ function Page({ backendLink, user, setCookie }) {
         <div className="modal-hidden">
             <div className="modal-content">
                 <span className="close" onClick={zamknijOkno}>&times;</span>
-                {trybGlobal == 0 && <ZadForm backendLink={backendLink} zadania={zadania} zamknijOkno={() => { zamknijOkno(0) }} blad={bladOkna} callback={update} userID={user} />}
-                {trybGlobal == 1 && <Harmonogram backendLink={backendLink} harmonogram={harmonogram} zamknijOkno={() => { zamknijOkno(1) }} blad={bladOkna} callback={update} userID={user} />}
-                {trybGlobal == 3 && <UserConfig backendLink={backendLink} dane={userData} zamknijOkno={() => { zamknijOkno(3) }} blad={bladOkna} userID={user} callback={update} logout={logout} />}
+                {trybGlobal == 0 && <ZadForm zadania={zadania} zamknijOkno={() => { zamknijOkno(0) }} blad={bladOkna} callback={update} />}
+                {trybGlobal == 1 && <Harmonogram harmonogram={harmonogram} zamknijOkno={() => { zamknijOkno(1) }} blad={bladOkna} callback={update} />}
+                {trybGlobal == 3 && <UserConfig dane={userData} zamknijOkno={() => { zamknijOkno(3) }} blad={bladOkna} callback={update} />}
             </div>
 
         </div>
         {specificDate != "any" && <div><div style={{ margin: "auto", textAlign: 'center', marginTop: "5vh", fontSize: "3vh" }}>Zadania dla {specificDate}</div><button onClick={() => { update("any") }} style={{ marginTop: "1vh" }}>Resetuj</button></div>}
-        <ZadaniaLista backendLink={backendLink} zadania={zadania} callback={update} />
+        <ZadaniaLista zadania={zadania} callback={update} />
     </>
 }
 

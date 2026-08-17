@@ -1,3 +1,6 @@
+import { AppContext } from '../utils/AppContext.jsx'
+import { useContext } from 'react'
+
 export async function sendRequest(id, backendLink, callback, method, endpoint, body = null)
 {
     const url = `${backendLink}${endpoint}/${id}`;
@@ -18,7 +21,8 @@ export async function sendRequest(id, backendLink, callback, method, endpoint, b
 
 
 // To nie jest do konca hook, ale może w przyszlosci cos sie doda
-export function useRequestActions(id, backendLink, callback, applyCSS) {
+export function useRequestActions(id, callback, applyCSS) {
+    const backendLink = useContext(AppContext).backendLink;
     const removeTask = async () => {
         applyCSS();
         sendRequest(id, backendLink, callback, "DELETE", "usunZadanie")

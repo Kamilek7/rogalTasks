@@ -1,6 +1,6 @@
 import Zadanie from "./zadanie";
 
-const ZadaniaLista = ({backendLink, zadania, callback}) => {
+const ZadaniaLista = ({zadania, callback}) => {
 
     
 
@@ -13,7 +13,7 @@ const ZadaniaLista = ({backendLink, zadania, callback}) => {
                 {
                     zadBezRodzica.map((zadanie) => 
                     {
-                        return <Zadanie backendLink={backendLink} key={zadanie["ID"]} zadanie={zadanie} d={d} child={false} callback={callback}></Zadanie>
+                        return <Zadanie key={zadanie["ID"]} zadanie={zadanie} d={d} child={false} callback={callback}></Zadanie>
                     }
                 )}
 
